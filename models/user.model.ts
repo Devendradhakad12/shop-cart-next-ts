@@ -1,10 +1,15 @@
-import mongoose, { models } from "mongoose";
+import mongoose  from "mongoose";
 
-const userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema(
+  {
     username: {
       type: String,
       required: true,
       unique: true,
+    },
+    name: {
+      type: String,
+      required: true,
     },
     email: {
       type: String,
@@ -15,7 +20,7 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-   
+
     role: {
       type: String,
       enum: ["customer", "admin"],
@@ -26,7 +31,7 @@ const userSchema = new mongoose.Schema({
       city: String,
       state: String,
       postalCode: String,
-      phone:String
+      phone: String,
     },
     orders: [
       {
@@ -41,7 +46,7 @@ const userSchema = new mongoose.Schema({
         ref: "Product",
       },
     ],
-  
+
     // Keep track of the user's purchase history
     purchaseHistory: [
       {
@@ -49,7 +54,7 @@ const userSchema = new mongoose.Schema({
         ref: "Order",
       },
     ],
-  
+
     // Add a profile picture
     profilePicture: String,
     // Support for user reviews and ratings
@@ -63,8 +68,9 @@ const userSchema = new mongoose.Schema({
         review: String,
       },
     ],
-  
-  },{timestamps:true});
+  },
+  { timestamps: true }
+);
 
-
-  export const User = models.User || mongoose.model("User",userSchema)
+ // mongoose.models = {}
+  export const User =  mongoose.models.User || mongoose.model("User", userSchema);
