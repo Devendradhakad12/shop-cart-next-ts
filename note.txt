@@ -1,0 +1,78 @@
+import { createSlice } from "@reduxjs/toolkit";
+const clientSide = typeof window !== "undefined";
+
+interface initialStateProps {
+  user: {};
+  loading: boolean;
+}
+
+const initialState: initialStateProps = {
+  user: clientSide
+    ? localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user")!) || {}
+      : {}
+    : {},
+  loading: false,
+};
+
+const AuthSlice = createSlice({
+  name: "auth",
+  initialState,
+  reducers: {
+    fetchRequest(state) {
+      state.loading = true;
+    },
+    fetchSuccess(state, action) {
+      state.loading = false;
+      state.user = action.payload;
+    },
+    fetchFail(state) {
+      state.loading = false;
+    },
+    logout(state) {
+      state.user = {};
+    },
+  },
+});
+
+export const { fetchFail, fetchSuccess, fetchRequest ,logout} = AuthSlice.actions;
+export default AuthSlice.reducer;
+
+
+
+
+-----------------------------------
+
+
+import axios from "axios";
+import { fetchFail, fetchRequest, fetchSuccess, logout } from "../slices/authSlice";
+import { AppDispatch } from "../store";
+ 
+
+export const getUser = async (dispatch: AppDispatch) => {
+  try {
+    dispatch(fetchRequest());
+    const res = await axios.get("/api/auth/user");
+    const user = await res.data;
+    dispatch(fetchSuccess(user));
+    localStorage.setItem("user", JSON.stringify(user));
+    return true;
+  } catch (error) {
+    console.log(error);
+    dispatch(fetchFail());
+    return true;
+  }
+};
+
+export const logoutAction = async (dispatch: AppDispatch) => {
+  try {
+   await axios.post("/api/auth/logout")
+    localStorage.setItem("user", "");
+    dispatch(logout())
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+

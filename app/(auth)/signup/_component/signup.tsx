@@ -1,11 +1,12 @@
 'use client'
 import axios from 'axios';
 import Link from 'next/link';
-import { redirect, useRouter } from 'next/navigation';
-import React, { FormEvent, useState } from 'react'
+import { useRouter } from 'next/navigation';
+import { FormEvent, useState } from 'react';
 import toast from 'react-hot-toast';
 
 const SignUpComponent = () => {
+
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState({
     username: "",
@@ -18,19 +19,18 @@ const SignUpComponent = () => {
   const handleSubmit = async (e: FormEvent) => {
     setLoading(true)
     e.preventDefault();
-     try {
-      let res = await axios.post("/api/auth/signup",userData)
-        console.log(res)
-        toast.success("Signup successfully")
-        router.refresh()
-        router.push("/")
-     } catch (error:any) {
-       console.log(error)
-       toast.error(error.response ? error.response.data :"Something went wrong")
-     }finally{
+    try {
+      await axios.post("/api/auth/signup", userData)
+      toast.success("Signup successfully")
+      router.refresh()
+      router.push("/")
+    } catch (error: any) {
+      console.log(error)
+      toast.error(error.response ? error.response.data : "Something went wrong")
+    } finally {
       setLoading(false)
-      
-     }
+
+    }
   }
 
   return (

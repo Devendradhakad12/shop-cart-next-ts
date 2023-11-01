@@ -7,8 +7,8 @@ import { redirect } from 'next/navigation'
 const SignUpPage = () => {
   const cookieStore = cookies()
   const token = cookieStore.get("scat")
- if(token?.value) return redirect("/")
-  return  <SignUpComponent />
+  if (token?.value) return redirect("/") // Redirect logged in user to homepage 
+  return <SignUpComponent />
 }
 
 export default SignUpPage

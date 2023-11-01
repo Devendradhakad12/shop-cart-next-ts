@@ -1,29 +1,57 @@
 'use client'
 
 import { Backdrop, SpeedDial, SpeedDialAction, SpeedDialIcon } from "@mui/material";
-import { Home, LayoutDashboard, List, LogIn, LogOut, ShoppingCart, User } from 'lucide-react';
-import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { toast } from "react-hot-toast";
- 
+import axios from "axios";
+import { Home, LayoutDashboard, List, LogIn, ShoppingCart, User } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
 interface DropdownProps {
-token:string | undefined | null
+    token: string | undefined | null
 }
 
-const Dropdown = ({token}:DropdownProps) => {
-   
+interface userProps {
+
+    iat: number;
+    id: string;
+    name: string;
+    role: string;
+}
+
+const Dropdown = ({ token }: DropdownProps) => {
+
+    const [user, setUser] = useState<userProps>()
     const [open, setOpen] = useState(false)
     const router = useRouter()
-    const navigate = usePathname()
     const item = 0
-    const role = "admin"
+
+
+    useEffect(() => {
+        async function getUser() {
+            try {
+                const res = await axios.get("/api/auth/user");
+                const user = await res.data;
+                setUser(user)
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        if (token) getUser()
+
+        if (!token) setUser(undefined)
+
+    }, [token])
+
+
     const option = [
         {
             icon: token ? <User /> : <LogIn />,
-            name:  token ? "Profile" : "Login",
+            name: token ? "Profile" : "Login",
             func: token ? profile : logIn,
         },
-     
+
 
         {
             icon: <List />,
@@ -44,14 +72,16 @@ const Dropdown = ({token}:DropdownProps) => {
         },
 
     ];
-    if (role === "admin") {
-        option.push({
-            icon: <LayoutDashboard />,
-            name: "Dashboard",
-            func: dashboard,
-        });
+    if (user) {
+        if (user?.role === "admin") {
+            option.push({
+                icon: <LayoutDashboard />,
+                name: "Dashboard",
+                func: dashboard,
+            });
+        }
     }
-  
+
 
     function dashboard() {
         router.replace("/admin/dashboard")

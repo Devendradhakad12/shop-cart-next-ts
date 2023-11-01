@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 
     const { email, password } = await req.json();
     if (!email || !password)
-      return new NextResponse("Missing Data", { status: 400 });
+      return new NextResponse("Missing Data", { status: 400 }); 
 
     const user = await User.findOne({ email });
     if (!user)
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     if (!comparePassword)
       return new NextResponse("wrong email or password", { status: 401 });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRETE!);
+    const token = jwt.sign({ id: user._id,role:user.role,name:user.name }, process.env.JWT_SECRETE!);
 
     cookies().set({
       name: "scat",
