@@ -5,6 +5,7 @@ import Navbar from '@/components/navbar'
 import Dropdown from '@/components/dropdown'
 import { Toaster } from 'react-hot-toast'
 import { Providers } from '@/redux/provider'
+import { tokenValue } from '@/lib/token'
 
 
 
@@ -20,6 +21,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const token = tokenValue()
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -29,7 +31,7 @@ export default function RootLayout({
           <main className='pt-16'>
             {children}
           </main>
-          <Dropdown />
+          <Dropdown token={token}/>
         </Providers>
       </body>
     </html>

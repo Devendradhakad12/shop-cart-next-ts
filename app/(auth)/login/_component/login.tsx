@@ -1,17 +1,33 @@
 'use client'
 
+import axios from 'axios';
 import Link from 'next/link';
-import React, { useState } from 'react'
+import { useRouter } from 'next/navigation';
+import React, { FormEvent, useState } from 'react'
 import toast from 'react-hot-toast'
 
 const LoginComponent = () => {
+  const router = useRouter()
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
-  const handleSubmit = () =>{
-    toast.success("mdcjnv")
+  const handleSubmit = async (e:FormEvent) =>{
+    e.preventDefault()
+    try {
+      setLoading(true)
+      let res = await axios.post("/api/auth/login",userData)
+      console.log(res)
+      toast.success("Login successfully")
+      router.refresh()
+      router.push("/")
+    } catch (error:any) {
+       console.log(error)
+       toast.error(error.response ? error.response.data :"Something went wrong")
+    }finally{
+      setLoading(false)
+    }
   }
   return (
     <div className="mainDiv">
@@ -38,7 +54,7 @@ const LoginComponent = () => {
           }
           value={userData.password}
         />
-        <button type="submit" className="lsBtn">
+        <button type="submit" className="lsBtn disabled:bg-sky-200" disabled={loading}>
           {loading ? "Login....." :"Login"}
         </button>
       </form>

@@ -2,9 +2,11 @@ import React from 'react'
 import { Camera, Search, ShoppingCart, User } from "lucide-react"
 import Dropdown from './dropdown'
 import Link from 'next/link'
+import { tokenValue } from '@/lib/token'
+ 
 const Navbar = () => {
-
-
+   const token = tokenValue()
+ 
     return (
 
         <div className='bg-sky-400 text-black fixed top-0 left-0 w-full '>
@@ -22,9 +24,11 @@ const Navbar = () => {
                 </div>
 
                 {/* login or profile icon  */}
-                <div className='sm:flex hidden'>
-                    <Link href={"/login"} className='df'>  <User /> Login</Link>
-                </div>
+              {
+                !token ?   <div className='sm:flex hidden'>
+                <Link href={"/login"} className='df'>  <User /> Login</Link>
+            </div> : <div className='sm:flex hidden'>  <Link href={"/profile"} className='df'>  <User /> Profile</Link></div>
+              }
 
                 {/*   cart icon */}
                 <div className='md:flex hidden'>
@@ -32,7 +36,7 @@ const Navbar = () => {
                 </div>
 
             </nav>
-        </div>
+        </div> 
     )
 }
 

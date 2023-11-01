@@ -1,12 +1,17 @@
 'use client'
 
-import { CarIcon, Home, LayoutDashboard, List, LogOut, PersonStanding, ShoppingCart } from 'lucide-react';
-import React, { useState } from 'react'
 import { Backdrop, SpeedDial, SpeedDialAction, SpeedDialIcon } from "@mui/material";
-import { useRouter, usePathname, redirect } from 'next/navigation';
-import { toast } from "react-hot-toast"
+import { Home, LayoutDashboard, List, LogIn, LogOut, ShoppingCart, User } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { toast } from "react-hot-toast";
+ 
+interface DropdownProps {
+token:string | undefined | null
+}
 
-const Dropdown = () => {
+const Dropdown = ({token}:DropdownProps) => {
+   
     const [open, setOpen] = useState(false)
     const router = useRouter()
     const navigate = usePathname()
@@ -14,10 +19,11 @@ const Dropdown = () => {
     const role = "admin"
     const option = [
         {
-            icon: <LogOut />,
-            name: "Logout",
-            func: logOut,
+            icon: token ? <User /> : <LogIn />,
+            name:  token ? "Profile" : "Login",
+            func: token ? profile : logIn,
         },
+     
 
         {
             icon: <List />,
@@ -45,6 +51,7 @@ const Dropdown = () => {
             func: dashboard,
         });
     }
+  
 
     function dashboard() {
         router.replace("/admin/dashboard")
@@ -64,10 +71,11 @@ const Dropdown = () => {
     function home() {
         router.replace("/")
     }
-    function logOut() {
-        // dispatch(logoutUser())
-        toast.success("Logout Successfully")
-        router.replace("/")
+    function profile() {
+        router.replace("/profile")
+    }
+    function logIn() {
+        router.replace("/login")
     }
 
     return (

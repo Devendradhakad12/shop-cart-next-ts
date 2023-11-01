@@ -5,36 +5,37 @@ import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
-// signup
+// login
 
 export async function POST(req: Request) {
   try {
     await connectToDB();
-    const { username, email, password: pass } = await req.json();
-    const userExist = await User.findOne({ email });
-    if (userExist)
-      return new NextResponse("User Already Exist", { status: 400 });
-    if (!username || !email || !pass)
+
+    const { email, password } = await req.json();
+    if (!email || !password)
       return new NextResponse("Missing Data", { status: 400 });
-    const hashPassword = await bcrypt.hash(pass, 10);
-    const user = await User.create({
-      username,
-      email,
-      password: hashPassword,
-      name: username,
-    });
+
+    const user = await User.findOne({ email });
+    if (!user)
+      return new NextResponse("wrong email or password", { status: 400 });
+
+    const comparePassword = await bcrypt.compare(password, user.password);
+
+    if (!comparePassword)
+      return new NextResponse("wrong email or password", { status: 401 });
+
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRETE!);
 
     cookies().set({
       name: "scat",
       value: token,
       httpOnly: true,
-      path: "/",
+      path: "/"
     });
 
-    return NextResponse.json("signup successfuly", { status: 200 });
+    return NextResponse.json("login successfuly", { status: 200 });
   } catch (error) {
-    console.log("SIGNUP_ERROR", error);
+    console.log("LOGIN_ERROR", error);
     return new NextResponse("Server Error", { status: 500 });
   }
 }

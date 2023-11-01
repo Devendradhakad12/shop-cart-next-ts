@@ -2,9 +2,9 @@ import React from 'react'
 import LoginComponent from './_component/login'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-const LoginPage = () => {
+const LoginPage = async () => {
   const cookieStore = cookies()
-  const token = cookieStore.get("scat")
+  const token =  cookieStore.get("scat")
   if (token?.value) return redirect("/")
   return (
     <LoginComponent />
@@ -12,3 +12,4 @@ const LoginPage = () => {
 }
 
 export default LoginPage
+ 

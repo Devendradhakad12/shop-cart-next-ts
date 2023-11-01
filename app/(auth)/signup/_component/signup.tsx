@@ -22,6 +22,7 @@ const SignUpComponent = () => {
       let res = await axios.post("/api/auth/signup",userData)
         console.log(res)
         toast.success("Signup successfully")
+        router.refresh()
         router.push("/")
      } catch (error:any) {
        console.log(error)
@@ -68,7 +69,7 @@ const SignUpComponent = () => {
             value={userData.password}
           />
 
-          <button type="submit" className="lsBtn">
+          <button type="submit" className="lsBtn disabled:bg-sky-200" disabled={loading}>
             {loading ? "Sign Up........" : "Sign Up"}
           </button>
         </form>
