@@ -1,4 +1,5 @@
 import { connectToDB } from "@/lib/database";
+import { DataStoredInToken } from "@/lib/props";
 import { User } from "@/models/user.model";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -24,7 +25,9 @@ export async function POST(req: Request) {
     if (!comparePassword)
       return new NextResponse("wrong email or password", { status: 401 });
 
-    const token = jwt.sign({ id: user._id,role:user.role,name:user.name }, process.env.JWT_SECRETE!);
+
+      const tokenData:DataStoredInToken = { id: user._id,role:user.role,name:user.name }
+    const token = jwt.sign(tokenData, process.env.JWT_SECRETE!);
 
     cookies().set({
       name: "scat",

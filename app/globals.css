@@ -81,5 +81,5 @@ input:-webkit-autofill:active {
 }
 
 .inputProfile {
-  @apply bg-transparent w-[100%] border-b border-sky-100 rounded-sm outline-none text-center py-4 text-[18px];
+  @apply  w-[100%] border-b border-sky-100 rounded-sm outline-none text-center py-4 text-[18px];
 }

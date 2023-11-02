@@ -6,6 +6,8 @@ import Dropdown from '@/components/dropdown'
 import { Toaster } from 'react-hot-toast'
 import { Providers } from '@/redux/provider'
 import { tokenValue } from '@/lib/token'
+import { getUserDataFromToken } from '@/lib/getDataFromToken'
+import { DataStoredInToken } from '@/lib/props'
 
 
 
@@ -16,12 +18,13 @@ export const metadata: Metadata = {
   description: 'ShopCart | Shopping to ShopCart',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   const token = tokenValue()
+  const user = await getUserDataFromToken() as DataStoredInToken
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -31,7 +34,7 @@ export default function RootLayout({
           <main className='pt-16'>
             {children}
           </main>
-          <Dropdown token={token}/>
+          <Dropdown token={token} user={user}/>
         </Providers>
       </body>
     </html>

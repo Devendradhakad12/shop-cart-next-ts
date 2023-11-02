@@ -1,12 +1,14 @@
+import { getUserDataFromToken } from '@/lib/getDataFromToken'
+import { DataStoredInToken } from '@/lib/props'
 import { tokenValue } from '@/lib/token'
-import { Search, ShoppingCart, User } from "lucide-react"
+import { LogIn, Search, ShoppingCart, User } from "lucide-react"
 import Link from 'next/link'
-import ProfileBtn from './ui/profile-btn'
 
 
 const Navbar = async () => {
     const token = tokenValue()
-
+    const user = await getUserDataFromToken() as DataStoredInToken
+   
 
     return (
 
@@ -24,7 +26,9 @@ const Navbar = async () => {
                 </div>
 
 
-               <ProfileBtn token={token || ""} />
+                {
+                    token ? <div ><Link href={"/profile"} className='flex' ><User />{user && user?.name}</Link></div> : <div className='df'>  <Link href={"/login"}>Login</Link> <LogIn /></div>
+                }
 
 
                 <div className='md:flex hidden'>

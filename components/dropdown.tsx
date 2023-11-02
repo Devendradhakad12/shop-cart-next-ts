@@ -1,6 +1,6 @@
 'use client'
 
-import { userProps } from "@/lib/props";
+import { DataStoredInToken, userProps } from "@/lib/props";
 import { Backdrop, SpeedDial, SpeedDialAction, SpeedDialIcon } from "@mui/material";
 import axios from "axios";
 import { Home, LayoutDashboard, List, LogIn, ShoppingCart, User } from 'lucide-react';
@@ -8,37 +8,21 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 interface DropdownProps {
-    token: string | undefined | null
+    token: string | undefined | null,
+    user:DataStoredInToken
 }
 
 
 
-const Dropdown = ({ token }: DropdownProps) => {
+const Dropdown = ({ token,user }: DropdownProps) => {
 
-    const [user, setUser] = useState<userProps>()
+  
     const [open, setOpen] = useState(false)
     const router = useRouter()
     const item = 0
 
 
-    useEffect(() => {
-        async function getUser() {
-            try {
-                const res = await axios.get("/api/auth/user");
-                const user = await res.data;
-                setUser(user)
-
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
-        if (token) getUser()
-
-        if (!token) setUser(undefined)
-
-    }, [token])
-
+  
 
     const option = [
         {

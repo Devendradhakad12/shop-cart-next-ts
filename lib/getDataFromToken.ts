@@ -3,16 +3,17 @@
 import { NextResponse } from "next/server";
 import { cookies } from 'next/headers'
 import jwt from "jsonwebtoken";
-import { User } from "@/models/user.model";
-
-export async function GET(req: Request) {
+import { DataStoredInToken } from "./props";
+ 
+ // get user name , email or id using token
+export async function getUserDataFromToken() {
   try {
     const cookieStore = cookies()
     const token =  cookieStore.get("scat")
-    if(!token) return new NextResponse("Unauthorized",{status:401})
-    const user =   jwt.verify(token.value,process.env.JWT_SECRETE!)
+    if(!token) return  null
+    const user =   jwt.verify(token.value,process.env.JWT_SECRETE!) as DataStoredInToken
  
-    return NextResponse.json(user,{status:200})
+    return user
     
   } catch (error) {
     console.log("GET_USER_ERROR", error);
