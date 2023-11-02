@@ -79,3 +79,7 @@ input:-webkit-autofill:active {
 .edbtn{
   @apply  px-5 rounded-lg text-[20px] font-semibold transition-all duration-75 hover:scale-105 active:scale-95
 }
+
+.inputProfile {
+  @apply bg-transparent w-[100%] border-b border-sky-100 rounded-sm outline-none text-center py-4 text-[18px];
+}

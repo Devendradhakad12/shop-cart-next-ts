@@ -1,5 +1,6 @@
 'use client'
 
+import { userProps } from "@/lib/props";
 import { Backdrop, SpeedDial, SpeedDialAction, SpeedDialIcon } from "@mui/material";
 import axios from "axios";
 import { Home, LayoutDashboard, List, LogIn, ShoppingCart, User } from 'lucide-react';
@@ -10,13 +11,7 @@ interface DropdownProps {
     token: string | undefined | null
 }
 
-interface userProps {
 
-    iat: number;
-    id: string;
-    name: string;
-    role: string;
-}
 
 const Dropdown = ({ token }: DropdownProps) => {
 

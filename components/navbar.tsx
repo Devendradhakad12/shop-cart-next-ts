@@ -1,6 +1,7 @@
 import { tokenValue } from '@/lib/token'
 import { Search, ShoppingCart, User } from "lucide-react"
 import Link from 'next/link'
+import ProfileBtn from './ui/profile-btn'
 
 
 const Navbar = async () => {
@@ -23,11 +24,7 @@ const Navbar = async () => {
                 </div>
 
 
-                {
-                    !token ? <div className='sm:flex hidden'>
-                        <Link href={"/login"} className='df'>  <User /> Login</Link>
-                    </div> : <div className='sm:flex hidden'>  <Link href={"/profile"} className='df'>  <User /> Profile</Link></div>
-                }
+               <ProfileBtn token={token || ""} />
 
 
                 <div className='md:flex hidden'>

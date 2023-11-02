@@ -1,4 +1,4 @@
-import mongoose  from "mongoose";
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
@@ -25,13 +25,16 @@ const userSchema = new mongoose.Schema(
       enum: ["customer", "admin"],
       default: "customer",
     },
-    address: {
-      street: String,
-      city: String,
-      state: String,
-      postalCode: String,
-      phone: String,
-    },
+    address: [
+      {
+        name: String,
+        mobile: String,
+        pincode: String,
+        locality: String,
+        city: String,
+        state: String,
+      },
+    ],
     orders: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -71,5 +74,5 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
- // mongoose.models = {}
-  export const User =  mongoose.models.User || mongoose.model("User", userSchema);
+// mongoose.models = {}
+export const User = mongoose.models.User || mongoose.model("User", userSchema);
