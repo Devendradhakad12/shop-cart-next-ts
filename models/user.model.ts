@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
         name: String,
         mobile: String,
         pincode: String,
-        locality: String,
+        locality: String, 
         city: String,
         state: String,
       },

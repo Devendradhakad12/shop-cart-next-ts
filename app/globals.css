@@ -83,3 +83,6 @@ input:-webkit-autofill:active {
 .inputProfile {
   @apply  w-[100%] border-b border-sky-100 rounded-sm outline-none text-center py-4 text-[18px];
 }
+.inputAddress {
+  @apply  w-[45%] border-b border-sky-100 rounded-sm outline-none text-center py-4 text-[18px];
+}
