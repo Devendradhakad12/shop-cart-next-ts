@@ -9,9 +9,7 @@ export async function PUT(req: Request, {params}:{params:{userid:string}} ) {
   try {
     await connectToDB();
     // get update info
-    const { username, email } = await req.json();
-    if (!username || !email)
-      return NextResponse.json({ error: "Missing Data" }, { status: 500 });
+    const { username, email,AddressInfo } = await req.json();
 
     //get token from cookie
     const cookieStore = cookies();
@@ -29,9 +27,10 @@ export async function PUT(req: Request, {params}:{params:{userid:string}} ) {
 
     //find user from database
     const userinfo = await User.findById({ _id: user?.id });
-    userinfo.username = username;
-    userinfo.name = username;
-    userinfo.email = email;
+    userinfo.username = username || userinfo.username;
+    userinfo.name = username ||  userinfo.name;
+    userinfo.email = email ||  userinfo.email;
+    userinfo.address = AddressInfo || userinfo.address
     userinfo.save();
     return NextResponse.json("Ingormation Updated", { status: 200 });
   } catch (error: any) {

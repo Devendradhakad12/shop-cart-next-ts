@@ -25,16 +25,15 @@ const userSchema = new mongoose.Schema(
       enum: ["customer", "admin"],
       default: "customer",
     },
-    address: [
-      {
+    address:  {
         name: String,
-        mobile: String,
-        pincode: String,
+        mobile: Number,
+        pincode: Number,
         locality: String, 
         city: String,
         state: String,
       },
-    ],
+    
     orders: [
       {
         type: mongoose.Schema.Types.ObjectId,

@@ -16,12 +16,12 @@ export interface DataStoredInToken {
 
 // user address prop
 export interface UserAddress{
-    address :{
-        name: string,
-        mobile: string,
-        pincode: string,
-        locality: string, 
-        city: string,
-        state: string,
-    }[]
-}
+ 
+    name: string,
+    mobile: number | null,
+    pincode: number | null,
+    locality: string, 
+    city: string,
+    state: string,
+}[]
+ 
