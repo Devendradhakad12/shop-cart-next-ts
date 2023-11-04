@@ -19,7 +19,7 @@ const Navbar = async () => {
 
 
                 <div className='w-[50%] df relative'>
-                    <input type="text" id="first_name" className="input" placeholder="Search for Product, Brands and more" required />
+                    <input type="text" id="first_name" className="inputSearch" placeholder="Search for Product, Brands and more" required />
                     <button className=' absolute right-5 text-white'><Search /></button>
                 </div>
 

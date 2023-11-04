@@ -8,6 +8,7 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+ 
 
   description: String,
   price: {
@@ -22,9 +23,15 @@ const productSchema = new mongoose.Schema({
   brand: String,
   images: [
     {
-        type:String,
-        required:true
-    }
+      public_id: {
+        type: String,
+        required: true,
+      },
+      url: {
+        type: String,
+        required: true,
+      },
+    },
   ],
  
   reviews: [

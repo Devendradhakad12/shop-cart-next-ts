@@ -16,7 +16,7 @@ const LayoutRoute = async ({
     if(userRole?.role !== "admin") return redirect("/")
   return (
     
-      <div className='dashboard z-50'>
+      <div className='dashboard'>
       <Sidebar />
         {children}
       </div>
