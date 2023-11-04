@@ -31,7 +31,7 @@ export default async function RootLayout({
         <Providers>
           <Toaster />
           <Navbar />
-          <main className='pt-16'>
+          <main className='pt-14'>
             {children}
           </main>
           <Dropdown token={token} user={user}/>

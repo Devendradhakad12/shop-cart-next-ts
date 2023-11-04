@@ -86,3 +86,54 @@ input:-webkit-autofill:active {
 .inputAddress {
   @apply  w-[45%] border-b border-sky-100 rounded-sm outline-none text-center py-4 text-[18px];
 }
+
+
+/* Style for Sidebar */
+.dashboard{
+  width: 100vw;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  position: absolute;
+
+}
+.sidebar {
+  display: flex;
+  flex-direction: column; 
+  padding: 3rem 0;
+  border-right: 1px solid ;
+  height: 92vh;
+ 
+ 
+}
+
+.sidebar > a:first-child {
+  padding: 0;
+}
+ 
+
+.sidebar > a > img:hover {
+  filter: drop-shadow(0 0 10px tomato);
+}
+.sidebar a {
+  text-decoration: none;
+  padding: 2rem 3rem;
+  transition: all 0.5s;
+ 
+}
+.sidebar a:hover {
+  @apply text-sky-400 ;
+  transform: scale(1.1);
+}
+
+.sidebar a > P {
+  display: flex;
+  align-items: center;
+}
+.sidebar a > p > svg {
+  margin-right: 0.5rem;
+}
+
+.MuiTypography-root {
+  background-color: #fff !important;
+}
