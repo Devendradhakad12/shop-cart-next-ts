@@ -1,0 +1,413 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+ body{
+  background: #000217;
+  color: white;
+ }
+
+.input{
+  @apply outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 pl-3 pr-14 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+}
+
+.df{
+  @apply flex justify-start items-center
+}
+ 
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: rgb(255, 255, 255);
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px rgba(17, 24, 39, 0.818);
+}
+
+
+/* signup login form  style */
+
+.mainDiv {
+  @apply bg-slate-900 h-[100vh] text-white flex justify-center items-center flex-col;
+}
+.loginH1 {
+  @apply font-semibold mb-5 text-[30px];
+}
+.loginDiv {
+  @apply flex flex-col justify-center items-center bg-slate-700 p-5 rounded-lg border-t-4 border-sky-400 sm:w-[500px] w-[90%] shadow-md shadow-slate-200;
+}
+.loginForm {
+  @apply flex flex-col gap-6 sm:w-[60%] w-[80%];
+}
+.formInput {
+  @apply bg-transparent w-[100%] border-b-2 border-sky-400 rounded-sm outline-none text-center py-4 text-[18px];
+}
+.lsBtn {
+  @apply mt-5 bg-sky-400 rounded-sm py-1 text-[25px] font-bold text-slate-700;
+}
+.loginP {
+  @apply my-8;
+}
+.bg {
+  @apply bg-sky-400;
+}
+.box {
+  @apply bg-sky-400 h-[100px] w-[100px] rounded-md flex justify-center items-center flex-col;
+}
+
+.homeTaskCompletedBox {
+  @apply sm:w-[400px] w-[90%] h-[250px]  rounded-xl flex flex-col justify-center items-center;
+}
+
+.progressBarOutside {
+  @apply md:w-[70%] w-[100%] h-[30px] bg-[#22190a3d] rounded-full;
+}
+
+.progressBarInside {
+  @apply h-full flex justify-center items-center text-[18px] font-bold  text-center p-0.5 leading-none rounded-full;
+}
+.homeTaskBox {
+  @apply sm:w-[400px] w-[90%] flex-wrap  h-full pb-[90px]  rounded-xl flex flex-col items-center pt-6;
+}
+
+.btn {
+  @apply bg-sky-800 px-5 py-3 rounded-lg text-[20px] font-semibold text-white transition-all duration-75 hover:scale-105 active:scale-95
+}
+
+.edbtn{
+  @apply  px-5 rounded-lg text-[20px] font-semibold transition-all duration-75 hover:scale-105 active:scale-95
+}
+
+.inputProfile {
+  @apply  w-[100%] border-b border-sky-100 rounded-sm outline-none text-center py-4 text-[18px];
+}
+.inputAddress {
+  @apply  w-[45%] border-b border-sky-100 rounded-sm outline-none text-center py-4 text-[18px];
+}
+
+
+/* Style for Sidebar */
+.dashboard{
+  width: 100vw;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  position: absolute;
+
+}
+.sidebar {
+  display: flex;
+  flex-direction: column; 
+  padding: 3rem 0;
+  border-right: 1px solid ;
+  height: 92vh;
+ 
+ 
+}
+
+.sidebar > a:first-child {
+  padding: 0;
+}
+ 
+
+.sidebar > a > img:hover {
+  filter: drop-shadow(0 0 10px tomato);
+}
+.sidebar a {
+  text-decoration: none;
+  padding: 2rem 3rem;
+  transition: all 0.5s;
+ 
+}
+.sidebar a:hover {
+  @apply text-sky-400 ;
+  transform: scale(1.1);
+}
+
+.sidebar a > P {
+  display: flex;
+  align-items: center;
+}
+.sidebar a > p > svg {
+  margin-right: 0.5rem;
+}
+
+.MuiTypography-root {
+  background-color: #fff !important;
+}
+
+
+/*! admin home style   */
+.home {
+  display: flex;
+ 
+  .homeContainer {
+    flex: 6;
+
+    .widgets,
+    .charts {
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+    } 
+
+    .charts {
+      padding: 5px 20px;
+    }
+
+    .listContainer {
+      -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+      box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+      padding: 20px;
+      margin: 20px;
+
+      .listTitle {
+        font-weight: 500;
+        color: gray;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
+
+
+/*! widget style */
+
+.widget {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  padding: 10px;
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  border-radius: 10px;
+  height: 100px;
+
+  .left,
+  .right { 
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between;
+
+    .title {
+      font-weight: bold;
+      font-size: 14px;
+      color: rgb(160, 160, 160);
+    }
+
+    .counter {
+      font-size: 28px;
+      font-weight: 300;
+    }
+
+    .link {
+      width: max-content;
+      font-size: 12px;
+      border-bottom: 1px solid gray;
+      cursor: pointer;
+    }
+
+    .percentage {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+
+      &.positive {
+        color: green;
+      }
+      &.negative {
+        color: red;
+      }
+    }
+
+    .icon {
+      font-size: 18px;
+      padding: 5px;
+      border-radius: 5px;
+      align-self: flex-end;
+    }
+  }
+}
+
+/* features */
+.featured {
+  flex: 2;
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  padding: 10px;
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: gray;
+
+    .title {
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+
+  .bottom { 
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    .featuredChart {
+      width: 100px;
+      height: 100px;
+    }
+
+    .title {
+      font-weight: 500;
+      color: gray;
+    }
+
+    .amount {
+      font-size: 30px;
+    }
+
+    .desc {
+      font-weight: 300;
+      font-size: 12px;
+      color: gray;
+      text-align: center;
+    }
+
+    .summary {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .item {
+        text-align: center;
+
+        .itemTitle {
+          font-size: 14px;
+          color: gray;
+        }
+
+        .itemResult {
+          display: flex;
+          align-items: center;
+          margin-top: 10px;
+          font-size: 14px;
+
+          &.positive {
+            color: green;
+          }
+
+          &.negative {
+            color: red;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+/*  chart */
+.chart {
+  flex: 4;
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: 2px 4px 10px 1px rgba(55, 5, 5, 0.47);
+  padding: 10px;
+  color: rgb(28, 12, 12);
+
+  .title {
+    margin-bottom: 20px;
+  }
+
+  .chartGrid {
+    stroke: rgb(228, 225, 225);
+  }
+}
+  
+
+/* data table */
+.datatable {
+  height: 600px;
+  padding: 20px;
+  
+  .datatableTitle{
+    width: 100%;
+    font-size: 24px;
+    color: gray;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .link{
+      text-decoration: none;
+      color: green;
+      font-size: 16px;
+      font-weight: 400;
+      border: 1px solid green;
+      padding: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+
+  .cellWithImg {
+    display: flex;
+    align-items: center;
+
+    .cellImg {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+  }
+
+  .cellWithStatus {
+    padding: 5px;
+    border-radius: 5px;
+
+    &.active {
+      background-color: rgba(0, 128, 0, 0.05);
+      color: green;
+    }
+    &.pending {
+      background-color: rgba(255, 217, 0, 0.05);
+      color: goldenrod;
+    }
+    &.passive {
+      background-color: rgba(255, 0, 0, 0.05);
+      color: crimson;
+    }
+  }
+
+  .cellAction {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .viewButton {
+      padding: 2px 5px;
+      border-radius: 5px;
+      color: darkblue;
+      border: 1px dotted rgba(0, 0, 139, 0.596);
+      cursor: pointer;
+    }
+    
+    .deleteButton {
+      padding: 2px 5px;
+      border-radius: 5px;
+      color: crimson;
+      border: 1px dotted rgba(220, 20, 60, 0.6);
+      cursor: pointer;
+    }
+  }
+}

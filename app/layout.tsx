@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import './globals.css'
+import './globals.scss'
 import Navbar from '@/components/navbar'
 import Dropdown from '@/components/dropdown'
 import { Toaster } from 'react-hot-toast'
