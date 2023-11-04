@@ -35,7 +35,7 @@ const Sidebar = () => {
               <Link href='/admin/products'>
                   <TreeItem nodeId="2" label="All" icon={<PostAddOutlined/>} />
               </Link>
-              <Link href='/admin/product'>
+              <Link href='/admin/product/new'>
                   <TreeItem nodeId="3" label="Create" icon={<AddOutlined/>} />
               </Link>
 

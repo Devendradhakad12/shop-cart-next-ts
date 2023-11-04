@@ -25,7 +25,7 @@ const Navbar = async () => {
 
 
                 {
-                    token ? <div ><Link href={"/profile"} className='flex' ><User /></Link></div> : <div className='df'>  <Link href={"/login"}>Login</Link> <LogIn /></div>
+                    token ? <div ><Link href={"/profile"} className='flex' ><User /></Link></div> : <div className='df'>  <Link href={"/login"}  className='df'>Login <LogIn /></Link> </div>
                 }
 
 

@@ -43,11 +43,7 @@ const productSchema = new mongoose.Schema({
     default: 0,
   },
 
-  // Track the date the product was added to the store
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+ 
 
 },{timestamps:true});
 
