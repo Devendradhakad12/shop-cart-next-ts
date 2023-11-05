@@ -11,7 +11,7 @@ import toast from 'react-hot-toast'
 
 const Profile = ({ token }: { token: string }) => {
   const router = useRouter()
-  const [loading, setLoading] = useState(false) // Show loading when loading user data for the first time
+  const [loading, setLoading] = useState(true) // Show loading when loading user data for the first time
   const [userid, setUserId] = useState("")   // store user id when userdata loaded
 
   const [editinfo, setEditInfo] = useState(true)   //  Set user and email input fields Readonly when it is true and show Edit complete button and if it is false then show Done Button

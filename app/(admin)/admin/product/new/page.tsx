@@ -39,7 +39,7 @@ const AddNewProductPage = () => {
                 data.append("upload_preset", "ko8fnbhn");
                 data.append("cloud_name", "dvkfio4zq");
                 const uploadRes = await axios.post(
-                  "https://api.cloudinary.com/v1_1/dvkfio4zq/image/upload",
+                  `https://api.cloudinary.com/v1_1/dvkfio4zq/image/upload`,
                   data
                 );
                 const public_id = uploadRes.data.public_id;
@@ -55,7 +55,7 @@ const AddNewProductPage = () => {
           );
     
       ///    console.log(image);
-          console.log(images);
+        
           if (images[0] === undefined) {
             toast.error("Timed out");
             return;
@@ -68,7 +68,6 @@ const AddNewProductPage = () => {
             data,
             config
           );
-          console.log(res);
           toast.success("Product created successfully");
           setProductImages([]);
           router.push("/admin/products")
@@ -82,7 +81,7 @@ const AddNewProductPage = () => {
        
     }
 
-    const category = ["phones", "laptops", "cloths", "gadgets", "toys", "food", "beauty", "sports"]
+    const category = ["phones", "laptops", "cloths", "gadgets", "toys", "food", "beauty", "sports","watch","shoes","bag"]
     
     
     return (
@@ -108,7 +107,7 @@ const AddNewProductPage = () => {
                                 ))
                             }
                         </select>
-                        <button className="btn mt-10">{loading ? "Create...." : "Create"}</button>
+                        <button disabled={loading} className="btn mt-10 disabled:opacity-40">{loading ? "Create...." : "Create"}</button>
                     </form>
                 </div>
             </div>

@@ -4,7 +4,7 @@ interface QueryStr {
   price: { gte: string | null; lte: string | null };
   category: string | null;
 }
-
+ 
 export default class ApiFeatures {
   query;
   queryStr;
@@ -29,7 +29,9 @@ export default class ApiFeatures {
   //* filter product with price and category
   filter() {
     const queryCopy = { ...this.queryStr };
-    const removeFileds = ["keyword", "page"];
+    //console.log(queryCopy.category)
+    const removeFileds =queryCopy.category === null ?  ["keyword", "page","category"] : ["keyword", "page"] ;
+ 
     //  delete queryCopy["keyword"]
     removeFileds.forEach((key) => delete queryCopy[key]);
     let queryStr = JSON.stringify(queryCopy);
@@ -37,7 +39,7 @@ export default class ApiFeatures {
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, (key) => `$${key}`);
     //   console.log(JSON.parse(querySty))
     queryStr = JSON.parse(queryStr);
-    console.log(queryStr)
+  //  console.log(queryStr)
     this.query = this.query.find(queryStr);
     return this;
   }
