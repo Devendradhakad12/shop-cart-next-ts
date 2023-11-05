@@ -25,7 +25,7 @@ interface ChartProps {
     title:string
 }
 
-const Chart = ({ aspect, title }:ChartProps) => {
+const Chart = ({ aspect, title }:ChartProps) => { 
   return (
     <div className="chart">
       <div className="title">{title}</div>

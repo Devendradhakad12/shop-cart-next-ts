@@ -4,9 +4,8 @@ import Loader from '@/components/loader'
 import { UserAddress } from '@/lib/props'
 import axios from 'axios'
 import { Plus } from 'lucide-react'
-import { set } from 'mongoose'
 import { useRouter } from 'next/navigation'
-import React, { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
 const Profile = ({ token }: { token: string }) => {
@@ -17,7 +16,7 @@ const Profile = ({ token }: { token: string }) => {
   const [editinfo, setEditInfo] = useState(true)   //  Set user and email input fields Readonly when it is true and show Edit complete button and if it is false then show Done Button
   const [editLod, setEditLod] = useState(false)  // show loading (Edit....) when username and email updating
   const [userinfo, setUserInfo] = useState({
-    username: "",
+    username: "", 
     email: ""
   })
   const [editAddressLod, setEditAddressLod] = useState(false)  // show loading (Edit.... or Add....) when Address adding and updating
