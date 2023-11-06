@@ -27,8 +27,12 @@ const AddNewProductPage = () => {
     };
 
     const handleSubmit = async (e: FormEvent) => {
-        setLoading(true);
-        e.preventDefault();
+      e.preventDefault();
+      if(!productCategory){
+        toast.error("Please select category")
+        return
+      }
+      setLoading(true);
         const config = { headers: { "Content-Type": "application/json" } };
         try {
           const images = await Promise.all(
@@ -81,6 +85,7 @@ const AddNewProductPage = () => {
        
     }
 
+    
     const category = ["phones", "laptops", "cloths", "gadgets", "toys", "food", "beauty", "sports","watch","shoes","bag"]
     
     
@@ -94,12 +99,12 @@ const AddNewProductPage = () => {
                     <form onSubmit={handleSubmit} className="flex flex-col w-full gap-2 px-10">
                         <input type="text" placeholder='Product Name' className='input' value={productName} onChange={(e) => setProductName(e.target.value)} required />
                         <textarea className="input" placeholder="Product Description" rows={5} required onChange={(e) => setProductDesc(e.target.value)}  >{productDesc}</textarea>
-                        <input type="number" placeholder='Product Price' className='input' value={productPrice} required onChange={(e) => setProductPrice(Number(e.target.value))} />
-                        <input type="number" placeholder='Product Stock' className='input' value={productStock} required onChange={(e) => setProductStock(Number(e.target.value))} />
+                        <input type="number" placeholder='Product Price' className='input' value={productPrice || ""} required onChange={(e) => setProductPrice(Number(e.target.value))} />
+                        <input type="number" placeholder='Product Stock' className='input' value={productStock || ""} required onChange={(e) => setProductStock(Number(e.target.value))} />
                         <input multiple accept="image/" type="file" className='hidden' id="images" required onChange={handleFileChange} />
                         <label htmlFor="images" className="input" >Click to Select Images</label>
 
-                        <select id="countries" className={"selectButton"} onChange={(e) => setProductCategory(e.target.value)} >
+                        <select id="countries" className={"selectButton"} onChange={(e) => setProductCategory(e.target.value)} required >
                             <option selected>Choose a Category</option>
                             {
                                 category.map((item) => (

@@ -1,4 +1,5 @@
 import ApiFeatures from "@/lib/apiFeatures";
+import { connectToDB } from "@/lib/database";
 import { getUserDataFromToken } from "@/lib/getDataFromToken";
 import { DataStoredInToken } from "@/lib/props";
 import { tokenValue } from "@/lib/token";
@@ -7,15 +8,16 @@ import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
 
 export async function GET(req:Request) {
+  await connectToDB()
   try {
-    const token = await tokenValue();
+ /*    const token = await tokenValue();
     const user = (await getUserDataFromToken()) as DataStoredInToken;
-    if (!token || !user) new NextResponse("Unauthorized", { status: 500 });
+    if (!token || !user) new NextResponse("Unauthorized", { status: 500 }); */
  
     // get search params from url
     const url = new URL(req.url)
     const keyword = url.searchParams.get("keyword")
-    const page = url.searchParams.get("page")
+    const page = url.searchParams.get("page") || 1
     const priceGte = url.searchParams.get("price[gte]") || 0
     const priceLte = url.searchParams.get("price[lte]")  || 10000000000
     const price = {gte:priceGte,lte:priceLte}
@@ -23,10 +25,11 @@ export async function GET(req:Request) {
     const query  = {keyword,page,price,category}
 
     // search , filter and pagination product using apiFeature
-    const apiFeature = new ApiFeatures(Product.find(),query).search().pagination(5).filter()
+    const resultPerPage = 5
+    const apiFeature = new ApiFeatures(Product.find(),query).search().pagination(resultPerPage).filter()
     const products = await apiFeature.query;  
  
-    return NextResponse.json(products, { status: 200 });
+    return NextResponse.json({products,resultPerPage}, { status: 200 });
   } catch (error) {
     console.log("PRODUCTS FETCHING ERROR", error);
     return new NextResponse("Server error", { status: 500 });

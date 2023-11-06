@@ -130,8 +130,8 @@ console.log(oldImages)
                                 <form onSubmit={handleSubmit} className="flex flex-col w-full gap-2 px-10">
                                     <input type="text" placeholder='Product Name' className='input' value={productName} onChange={(e) => setProductName(e.target.value)} required />
                                     <textarea className="input" placeholder="Product Description" rows={5} required onChange={(e) => setProductDesc(e.target.value)}  >{productDesc}</textarea>
-                                    <input type="number" placeholder='Product Price' className='input' value={productPrice} required onChange={(e) => setProductPrice(Number(e.target.value))} />
-                                    <input type="number" placeholder='Product Stock' className='input' value={productStock} required onChange={(e) => setProductStock(Number(e.target.value))} />
+                                    <input type="number" placeholder='Product Price' className='input' value={productPrice || ""} required onChange={(e) => setProductPrice(Number(e.target.value))} />
+                                    <input type="number" placeholder='Product Stock' className='input' value={productStock || ""} required onChange={(e) => setProductStock(Number(e.target.value))} />
                            {/*          <input multiple accept="image/" type="file" className='hidden' id="images" required onChange={handleFileChange} />
                                     <label htmlFor="images" className="input" >Click to Select Images</label> */}
 

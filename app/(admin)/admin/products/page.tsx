@@ -44,13 +44,14 @@ const List = () => {
   const [loading,setLoading] = useState(true)
   const [deleteLoad,setDeleteLoad] = useState(false)
   const [page,setPage] = useState(1)
-  const router = useRouter()
+ const [resultPerPage,setResultPerPage] = useState(0)
 
   const getProducts  = async () =>{
     try {
      setLoading(true)
         const res = await axios.get(`/api/product/all?page=${page}`)
-       setProducts(res.data)
+       setProducts(res.data.products)
+       setResultPerPage(res.data.resultPerPage)
     } catch (error) {
        console.log(error)
        toast.error("Something went wrong") 
@@ -123,7 +124,7 @@ await axios.delete(`/api/product/${productid}`)
       <div className="flex gap-10 float-right mr-20 my-10">
         <button disabled={page<=1?true:false} onClick={()=>setPage((pre)=>pre-1)} className=" disabled:opacity-40"><MoveLeft /></button>
         <p>{page}</p>
-        <button disabled={products.length>=5 ?false : true} onClick={()=>setPage((pre)=>pre+1)} className="disabled:opacity-40"><MoveRight /></button>
+        <button disabled={products.length>= resultPerPage ?false : true} onClick={()=>setPage((pre)=>pre+1)} className="disabled:opacity-40"><MoveRight /></button>
       </div>
     </TableContainer> : <div className="flex justify-center items-center mt-10">Products Not available</div>
     }
