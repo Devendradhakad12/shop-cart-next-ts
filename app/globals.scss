@@ -3,15 +3,15 @@
 @tailwind utilities;
 
  body{
-  background: #000217;
+  background: #000000;
   color: white;
  }
 
 .input{
-  @apply outline-none bg-transparent border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2 px-4 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-center;
+  @apply outline-none bg-transparent border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2 px-4 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-center ;
 }
 .inputSearch{
-  @apply outline-none  bg-slate-600 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2 px-4 dark:bg-slate-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-center;
+  @apply outline-none  bg-slate-600 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full py-2 px-4 dark:bg-slate-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500  pr-14;
 }
 
 .df{
@@ -29,6 +29,9 @@ input:-webkit-autofill:active {
     box-shadow: inset 0 0 20px 20px rgba(17, 24, 39, 0.818);
 }
 
+button{
+  @apply rounded-md font-semibold transition-all duration-500 hover:scale-110;
+}
 
 /* signup login form  style */
 
@@ -430,4 +433,39 @@ input:-webkit-autofill:active {
 
 .selectButton{
   @apply capitalize text-center w-full bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+}
+
+
+
+// banner div 
+
+.bannerDiv::before{
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+height: 100%;
+width: 100%;
+background: url(https://res.cloudinary.com/dvkfio4zq/image/upload/v1699342225/shopcart/rrj7b09r5ov5tvvcotwf.jpg)center center/cover;
+ z-index: -1;
+ object-fit: cover;
+ background-repeat: no-repeat;
+ opacity: 0.8;
+ background-color: black;
+ border-radius: 20px;
+}
+.featureProduct::before{
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+height: 100%;
+width: 100%;
+background: url(https://res.cloudinary.com/dvkfio4zq/image/upload/v1699343193/shopcart/ow40zsre6a9var3h8fkk.jpg)center center/cover;
+ z-index: -1;
+ object-fit: cover;
+ background-repeat: no-repeat;
+ opacity: 0.1;
+ background-color: black;
+ border-radius: 20px;
 }

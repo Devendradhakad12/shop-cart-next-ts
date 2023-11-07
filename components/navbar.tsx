@@ -11,7 +11,7 @@ const Navbar = async () => {
 
     return ( 
 
-        <div className='bg-sky-400 text-black fixed top-0 left-0 w-full z-40 '>
+        <div className='bg-sky-500 text-black fixed top-0 left-0 w-full z-40 '>
             <nav className='flex justify-evenly h-14 items-center'>
 
                 <div>
@@ -23,12 +23,12 @@ const Navbar = async () => {
 
 
                 {
-                    token ? <div ><Link href={"/profile"} className='flex' ><User /></Link></div> : <div className='df'>  <Link href={"/login"}  className='df'>Login <LogIn /></Link> </div>
+                    token ? <div className='md:flex hidden' ><Link href={"/profile"} className='flex' ><User /></Link></div> : <div className='df'>  <Link href={"/login"}  className='df'>Login <LogIn /></Link> </div>
                 }
 
 
                 <div className='md:flex hidden'>
-                    <Link href={"/cart"} className='df'>   <ShoppingCart /> Cart</Link>
+                    <Link href={"/cart"} className='df'>   <ShoppingCart /></Link>
                 </div>
 
             </nav>

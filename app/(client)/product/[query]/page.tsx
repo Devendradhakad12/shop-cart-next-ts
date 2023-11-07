@@ -31,6 +31,6 @@ const ProductPAge = ({params}:{params:{query:string}}) => {
       
     </div>
   )
-}
+} 
 
 export default ProductPAge

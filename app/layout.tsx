@@ -1,13 +1,13 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.scss'
-import Navbar from '@/components/navbar'
 import Dropdown from '@/components/dropdown'
-import { Toaster } from 'react-hot-toast'
-import { Providers } from '@/redux/provider'
-import { tokenValue } from '@/lib/token'
+import Navbar from '@/components/navbar'
 import { getUserDataFromToken } from '@/lib/getDataFromToken'
 import { DataStoredInToken } from '@/lib/props'
+import { tokenValue } from '@/lib/token'
+import { Providers } from '@/redux/provider'
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import { Toaster } from 'react-hot-toast'
+import './globals.scss'
 
 
 
@@ -35,6 +35,7 @@ export default async function RootLayout({
             {children}
           </main>
           <Dropdown token={token} user={user}/>
+     
         </Providers>
       </body>
     </html>
