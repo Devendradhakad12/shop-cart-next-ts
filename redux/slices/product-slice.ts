@@ -1,8 +1,14 @@
 import { SatelliteAlt } from "@mui/icons-material";
 import { createSlice } from "@reduxjs/toolkit";
  
+
+ 
+
 const initialState = {
-  products: [],
+  products:[{
+    _id:"",
+    images:[{url:""}]
+  }],
   loading:true,
   error:false,
   resultPerPage:0
