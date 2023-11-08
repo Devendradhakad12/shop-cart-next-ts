@@ -7,7 +7,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   products:[{
     _id:"",
-    images:[{url:""}]
+    images:[{url:""}],
+    category:"",
+    name:"",
+    description:"",
+    price:"",
+    stock:0
   }],
   loading:true,
   error:false,
