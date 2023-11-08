@@ -2,6 +2,7 @@
 
 
 import Loader from '@/components/loader'
+import { addItemsToCart } from '@/redux/actions/cartAction'
 import { getProduct } from '@/redux/actions/product-action'
 import { useAppDispatch, useAppSelector } from '@/redux/hook'
 import { ShoppingCart } from 'lucide-react'
@@ -16,7 +17,7 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
     const { products, loading, error } = useAppSelector((state) => state.products)
     const dispatch = useAppDispatch()
     const [imageurl, setImageUrl] = useState("")
-    const [itemCount,setItemsCount] = useState(1)
+    const [itemCount, setItemsCount] = useState(1)
 
     const filteredProduct = products.filter((product) => product?._id === params.productid)
 
@@ -25,12 +26,12 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
     useEffect(() => {
         if (products.length < 2) dispatch(getProduct({}))
         if (!imageurl) setImageUrl(filteredProduct[0]?.images[0].url)
-        //    console.log("useEffet")
+
     }, [dispatch, productid, filteredProduct])
-    // console.log("Produucts", products)
-    console.log("filterProducts", filteredProduct)
-    //  console.log("imageurl", imageurl)
-    //  console.log(loading)
+    
+    const addToCart = (id: string) => {
+        dispatch(addItemsToCart(id, itemCount))
+    }
 
     return (
         <div>
@@ -84,18 +85,18 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
                                         <h3 className='mb-2 md:text-4xl text-2xl capitalize font-bold font-mono'>{filteredProduct && filteredProduct[0].name}</h3>
                                         <p className='mb-1 md:text-3xl text-xl capitalize font-bold font-mono'>₹{filteredProduct && filteredProduct[0].price}</p>
                                         {
-                                        filteredProduct && filteredProduct[0]?.stock !== 0 ?  <p className=' text-green-600'>Stock</p> : <p className=' text-red-600'>OutOfStock</p>
-                                       }
+                                            filteredProduct && filteredProduct[0]?.stock !== 0 ? <p className=' text-green-600'>Stock</p> : <p className=' text-red-600'>OutOfStock</p>
+                                        }
                                         <div className=' flex gap-4 mt-1 mb-3'>
                                             <div className='flex'>
-                                                <button onClick={()=>{if(itemCount > 1){setItemsCount((pre)=>{return pre-1})}}} className='bg-orange-500 text-black w-10 font-bold text-xl rounded-none m-0'>-</button>
+                                                <button onClick={() => { if (itemCount > 1) { setItemsCount((pre) => { return pre - 1 }) } }} className='bg-orange-500 text-black w-10 font-bold text-xl rounded-none m-0'>-</button>
                                                 <p className=' border-y border-orange-500 w-10 text-center m-0 '>{itemCount}</p>
-                                                <button  onClick={()=>{if(itemCount < filteredProduct[0]?.stock ){setItemsCount((pre)=>{return pre+1})}}} className='bg-orange-500 text-black w-10 font-bold text-xl rounded-none m-0'>+</button>
+                                                <button onClick={() => { if (itemCount < filteredProduct[0]?.stock) { setItemsCount((pre) => { return pre + 1 }) } }} className='bg-orange-500 text-black w-10 font-bold text-xl rounded-none m-0'>+</button>
                                             </div>
-                                            <button  className='border border-sky-300 text-sm text-white rounded-none px-3 py-1'><ShoppingCart /></button>
+                                            <button onClick={() => addToCart(filteredProduct[0]._id)} className='border border-sky-300 text-sm text-white rounded-none px-3 py-1'><ShoppingCart /></button>
                                         </div>
                                         <p className='md:text-2xl text-lg capitalize'>{filteredProduct && filteredProduct[0].description}</p>
-                                     
+
                                     </div>
                                 </div>
 

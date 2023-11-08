@@ -7,9 +7,9 @@ import { addTocart, revmoveToCart } from "../slices/cartSlice";
 //add to cart
 export const addItemsToCart = (id:string,quantity:number) => async (dispatch:AppDispatch,getState:any)=>{
 try {
-    const res = await axios.get(`/api/v1/product/${id}`)
-    dispatch(addTocart({productid:res.data.product._id,name:res.data.product.name,price:res.data.product.price,image:res.data.product.images[0].url,stock:res.data.product.stock,quantity}))
-    localStorage.setItem("cartItems",JSON.stringify(getState().addToCart.cart.cartItems))
+    const product = getState().products.products.filter((product:any) => product?._id === id) || []
+    dispatch(addTocart({product:product[0],quantity}))
+    localStorage.setItem("cartItems",JSON.stringify(getState().cart.cart.cartItems))  
     toast.success("item added to cart")
 } catch (error) {
     console.log(error) 
@@ -26,4 +26,4 @@ export const removetemsToCart = (id:string) => async (dispatch:AppDispatch,getSt
     } catch (error) {
         console.log(error)
     }
-    }
+    } 

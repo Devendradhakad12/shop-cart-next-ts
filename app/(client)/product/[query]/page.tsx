@@ -19,10 +19,10 @@ const ProductPAge = ({params}:{params:{query:string}}) => {
     useEffect(()=>{
         dispatch(getProduct({keyword:query}))
     },[dispatch,query])
-    console.log(query)
+   // console.log(query)
   
-    console.log(products)
-    console.log(loading)
+   // console.log(products)
+  //  console.log(loading)
   return (
     <div>
         {

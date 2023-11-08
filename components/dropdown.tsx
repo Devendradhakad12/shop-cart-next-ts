@@ -1,6 +1,7 @@
 'use client'
 
 import { DataStoredInToken, userProps } from "@/lib/props";
+import { useAppSelector } from "@/redux/hook";
 import { Backdrop, SpeedDial, SpeedDialAction, SpeedDialIcon } from "@mui/material";
 import axios from "axios";
 import { Home, LayoutDashboard, List, LogIn, ShoppingCart, User } from 'lucide-react';
@@ -16,10 +17,10 @@ interface DropdownProps {
 
 const Dropdown = ({ token,user }: DropdownProps) => {
 
-  
+    const {cart:Cart} = useAppSelector((state)=>state.cart)
     const [open, setOpen] = useState(false)
     const router = useRouter()
-    const item = 0
+    
 
 
   
@@ -30,7 +31,7 @@ const Dropdown = ({ token,user }: DropdownProps) => {
             name: token ? "Profile" : "Login",
             func: token ? profile : logIn,
         },
-
+ 
 
         {
             icon: <List />,
@@ -40,7 +41,7 @@ const Dropdown = ({ token,user }: DropdownProps) => {
 
         {
             icon: <ShoppingCart />,
-            name: `Cart ${item}`,
+            name: `Cart ${Cart.cartItems.length}`,
             func: cart,
         },
 

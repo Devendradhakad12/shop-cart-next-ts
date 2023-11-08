@@ -1,6 +1,7 @@
 'use client'
 
 import Loader from '@/components/loader'
+import { addItemsToCart } from '@/redux/actions/cartAction'
 import { getProduct } from '@/redux/actions/product-action'
 import { useAppDispatch, useAppSelector } from '@/redux/hook'
 import { Rating } from '@mui/material'
@@ -16,12 +17,16 @@ const FeaturedProducts = () => {
     dispatch(getProduct({}))
   }, [dispatch])
 
-  console.log(products)
-  console.log(loading)
+  // console.log(products)
+  // console.log(loading)
 
-  const onClick = (id:string) =>{
-      router.push(`/product/details/${id}`)
+  const onClick = (id: string) => {
+    router.push(`/product/details/${id}`)
   }
+
+  const addToCart = (id: string) => {
+    dispatch(addItemsToCart(id, 1))
+}
 
   return (
     <div className='md:pt-10 pt-2 relative featureProduct'>
@@ -37,37 +42,40 @@ const FeaturedProducts = () => {
       <div className='flex justify-center items-center flex-wrap gap-10 pb-10'>
 
         {/* product  */}
-           {    
-      loading ? <Loader /> : <>{products.length ?
-       <>
-{
-  products && products.map((product:any)=>(
-<button key={product._id} className='  md:w-fit w-[150px]' onClick={()=>onClick(product._id)}>
-<div>
-    <div className='flex justify-center items-center'>
-      <img className='md:w-[240px] w-[100px] md:h-[240px] h-[100px] rounded-sm object-contain' src={product.images[0].url} alt="" />
-    </div>
-    <div>
-      <Rating value={5} className='mt-3' size='small' />
-      <h2 className=' text-xl'>{product.name}</h2>
-      <p className=' font-bold'>₹ {product.price}</p>
-    </div>
-    <div className='mt-3'>
+        {
+          loading ? <Loader /> : <>{products.length ?
+            <>
+              {
+                products && products.map((product: any) => (
 
-      <button className='bg-orange-600 text-sm text-black mr-2 px-3 py-2'>ADD TO CART</button>
-      {/*       <button className='bg-orange-600 text-sm text-black ml-2 px-3 py-2' >BUY</button> */}
-    </div>
-  </div>
-</button>
-  ))
-}
-      </>: 
+                  <div className='  md:w-fit w-[150px]' key={product._id}>
+                    <button className='' onClick={() => onClick(product._id)}>
+                      <div className='flex justify-center items-center '>
+                        <img className='md:w-[240px] w-[100px] md:h-[240px] h-[100px] rounded-sm object-contain' src={product.images[0].url} alt="" />
 
-      <>
-      <div>Product not Available</div>
-      </> }</>
-    }
-      
+                      </div>
+                      <div>
+                        <Rating value={5} className='mt-3' size='small' />
+                        <h2 className=' text-xl'>{product.name}</h2>
+                        <p className=' font-bold'>₹ {product.price}</p>
+                      </div>
+                    </button>
+                    <div className='mt-3 text-center'>
+
+                      <button onClick={()=>addToCart(product._id)} className='button bg-orange-600 text-sm text-black mr-2 px-3 py-2'>ADD TO CART</button>
+                      {/*       <button className='bg-orange-600 text-sm text-black ml-2 px-3 py-2' >BUY</button> */}
+                    </div>
+                  </div>
+
+                ))
+              }
+            </> :
+
+            <>
+              <div>Product not Available</div>
+            </>}</>
+        }
+
 
 
 
