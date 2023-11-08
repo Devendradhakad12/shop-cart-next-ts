@@ -43,7 +43,7 @@ const FeaturedProducts = () => {
 
         {/* product  */}
         {
-          loading ? <Loader /> : <>{products.length ?
+          loading ? <Loader /> : <>{products.length >= 1?
             <>
               {
                 products && products.map((product: any) => (
