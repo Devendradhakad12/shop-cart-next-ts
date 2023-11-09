@@ -11,7 +11,7 @@ import { Dashboard } from '@mui/icons-material'
 const Navbar = async () => {
     const token = tokenValue()
 
-    const user = await getUserDataFromToken() as DataStoredInToken
+    const user = await getUserDataFromToken() as DataStoredInToken 
     
     return (
 
@@ -24,7 +24,7 @@ const Navbar = async () => {
 
 
 
-                <SearchBar />
+                <SearchBar token={token} user={user} />
 
 
                 <div className='flex gap-10'>

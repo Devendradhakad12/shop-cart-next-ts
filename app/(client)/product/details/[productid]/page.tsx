@@ -5,16 +5,27 @@ import Loader from '@/components/loader'
 import { addItemsToCart } from '@/redux/actions/cartAction'
 import { getProduct } from '@/redux/actions/product-action'
 import { useAppDispatch, useAppSelector } from '@/redux/hook'
+import {
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    Button,
+    Rating,
+} from "@mui/material";
+import axios from 'axios'
 import { ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 import ReactImageMagnify from 'react-image-magnify'
 
 const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
     const productid = params.productid
     const router = useRouter()
     const { products, loading, error } = useAppSelector((state) => state.products)
+    const { user, token } = useAppSelector((state) => state.userToken)
     const dispatch = useAppDispatch()
     const [imageurl, setImageUrl] = useState("")
     const [itemCount, setItemsCount] = useState(1)
@@ -28,10 +39,55 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
         if (!imageurl) setImageUrl(filteredProduct[0]?.images[0].url)
 
     }, [dispatch, productid, filteredProduct])
-    
+
     const addToCart = (id: string) => {
         dispatch(addItemsToCart(id, itemCount))
     }
+
+
+
+
+    //* submit review function
+    const [open, setOpen] = useState(false);
+    const [rating, setRating] = useState(0);
+    const [comment, setComment] = useState("")
+    const [success, setSuccess] = useState(false) // for reviews
+
+    const submitReviewToggle = () => {
+        open ? setOpen(false) : setOpen(true)
+    };
+
+    const reviewSubmitHandler = async () => {
+        if (!token || !user) return router.push("/login")
+        if (rating === 0 || comment === "") {
+            toast.error("Please Add Ratings and Comment")
+        } else {
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+
+                }
+            }
+            const reviewData = {
+                rating: rating,
+                comment: comment,
+                productId: productid
+            }
+            try {
+              //  const { data } = await axios.put(`/api/review`, reviewData, config);
+                //console.log(data)
+                toast.success("Review added")
+                setOpen(false)
+                setSuccess(!success)
+                setRating(0)
+                setComment("")
+            } catch (error) {
+                toast.error("Something went wrong");
+                console.log(error)
+            }
+        }
+    }
+
 
     return (
         <div>
@@ -40,9 +96,9 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
                     {
                         filteredProduct ? <>
 
-                            <div className='flex justify-evenly  md:flex-row  flex-col '>
+                            <div className='flex justify-evenly m-auto    md:flex-row  flex-col '>
 
-                                <div className='imagesDiv flex flex-col justify-center items-center mt-10 mx-4'>
+                                <div className=' md:w-[50%]   imagesDiv flex flex-col justify-center items-center mt-10 mx-4'>
 
                                     <div className='md:w-[500px]  h-[400px]  text-center object-cover mb-[10px] flex justify-center items-center  rounded-xl'>
                                         <ReactImageMagnify {...{
@@ -79,9 +135,10 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
                                         }
                                     </div>
                                 </div>
-                                <div className='md:pl-10 pl-20  w-full  md:mt-20 mt-10'>
+                                <div className=' md:pl-10 pl-20  md:w-[50%]  md:mt-20 mt-10'>
                                     <div>
                                         <h3 className='mb-5 capitalize text-orange-600'>{filteredProduct && filteredProduct[0].category}</h3>
+                                        <Rating value={5} size='small' />
                                         <h3 className='mb-2 md:text-4xl text-2xl capitalize font-bold font-mono'>{filteredProduct && filteredProduct[0].name}</h3>
                                         <p className='mb-1 md:text-3xl text-xl capitalize font-bold font-mono'>₹{filteredProduct && filteredProduct[0].price}</p>
                                         {
@@ -96,6 +153,25 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
                                             <button onClick={() => addToCart(filteredProduct[0]._id)} className='border border-sky-300 text-sm text-white rounded-none px-3 py-1'><ShoppingCart /></button>
                                         </div>
                                         <p className='md:text-2xl text-lg capitalize'>{filteredProduct && filteredProduct[0].description}</p>
+
+                                        <div className='mb-10 mt-5'>
+                                            {/* Submit review */} 
+                                            <button className=" bg-amber-500 text-black px-2 py-2 rounded-xl font-bold text-xl button" onClick={()=>setOpen(true)}>Submit Review</button>
+                                            <Dialog
+                                                open={open}
+                                                onClose={submitReviewToggle}
+                                            >
+                                                <DialogTitle>Submit Review</DialogTitle>
+                                                <DialogContent className="flex items-center flex-col md:w-[400px] w-[300px]">
+                                                    <Rating onChange={(e:any) => setRating(Number(e.target.value))} value={rating} size="large" />
+                                                    <textarea className="w-full px-10 py-3" rows={4} value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
+                                                </DialogContent>
+                                                <DialogActions>
+                                                    <Button onClick={submitReviewToggle} color="secondary">Cancel</Button>
+                                                    <Button onClick={reviewSubmitHandler}>Submit</Button>
+                                                </DialogActions>
+                                            </Dialog>
+                                        </div>
 
                                     </div>
                                 </div>

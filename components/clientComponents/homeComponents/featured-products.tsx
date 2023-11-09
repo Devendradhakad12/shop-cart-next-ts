@@ -14,7 +14,7 @@ const FeaturedProducts = () => {
   const router = useRouter()
 
   useEffect(() => {
-    dispatch(getProduct({}))
+    dispatch(getProduct({})) 
   }, [dispatch])
 
   // console.log(products)

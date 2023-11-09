@@ -2,17 +2,20 @@
 
 import Loader from '@/components/loader'
 import { UserAddress } from '@/lib/props'
+import { useAppDispatch } from '@/redux/hook'
+import { logoutUserToken } from '@/redux/slices/user-token'
 import axios from 'axios'
 import { Plus } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { FormEvent, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import { useDispatch } from 'react-redux'
 
 const Profile = ({ token }: { token: string }) => {
   const router = useRouter()
   const [loading, setLoading] = useState(true) // Show loading when loading user data for the first time
   const [userid, setUserId] = useState("")   // store user id when userdata loaded
-
+   const dispatch = useAppDispatch()
   const [editinfo, setEditInfo] = useState(true)   //  Set user and email input fields Readonly when it is true and show Edit complete button and if it is false then show Done Button
   const [editLod, setEditLod] = useState(false)  // show loading (Edit....) when username and email updating
   const [userinfo, setUserInfo] = useState({
@@ -102,6 +105,7 @@ const Profile = ({ token }: { token: string }) => {
   // logut handler
   const logoutHandler = async () => {
     await axios.post("/api/auth/logout")
+      dispatch(logoutUserToken())
     toast.success("loggedout")
     router.refresh()
   }
@@ -117,7 +121,7 @@ const Profile = ({ token }: { token: string }) => {
           {
             userinfo ? <>
               <div className='flex flex-col gap-2 justify-center items-center'>
-                <div className=' bg-slate-800 md:w-[500px] w-[90%] flex flex-col items-center justify-center shadow-sm shadow-slate-400 py-14 mt-5'>
+                <div className=' bg-slate-800 md:w-[500px] w-[90%] flex flex-col items-center justify-center shadow-sm shadow-orange-400 py-14 mt-5'>
                   <div className='flex gap-5 pb-5'>   <h2 className='text-xl'>Profile Information</h2> <button onClick={profileUpdate} className='bg-sky-600 px-3 rounded-md font-bold'>{!editinfo ? "Done" : <>{editLod ? "Edit.." : "Edit"}</>}</button></div>
                   <div>
                     <div className='flex flex-col justify-center items-center gap-5'>
@@ -129,7 +133,7 @@ const Profile = ({ token }: { token: string }) => {
 
 
                 {/* Address info */}
-                <div className=' bg-slate-800 md:w-[500px] w-[90%] flex flex-col items-center justify-center shadow-sm shadow-slate-400 py-14 my-5'>
+                <div className=' bg-slate-800 md:w-[500px] w-[90%] flex flex-col items-center justify-center shadow-sm shadow-orange-400 py-14 my-5'>
                   <div className='flex gap-5 pb-5 justify-center items-center'>   <h2 className='text-xl'>Manage Address</h2> {editAddress && <button onClick={() => setEditAddress(false)} className='bg-sky-600 px-3 rounded-md font-bold flex py-2' >  {AddressInfo.pincode !== null ? <>Edit</> : <>Add <Plus /></>}  </button>}</div>
                   <div>
                     <div >

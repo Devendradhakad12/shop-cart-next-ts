@@ -17,7 +17,7 @@ const reviewSchema = new mongoose.Schema({
     },
     comment: String,
     // Allow users to upvote and downvote reviews
-    upvotes: {
+    upvotes: { 
       type: Number,
       default: 0,
     },

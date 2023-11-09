@@ -25,6 +25,7 @@ export default async function RootLayout({
 }) {
   const token = tokenValue()
   const user = await getUserDataFromToken() as DataStoredInToken
+ 
   return (
     <html lang="en">
       <body className={inter.className}>

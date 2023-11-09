@@ -10,8 +10,11 @@ const CartIcon = () => {
     
     return (
         <div className='sm:flex hidden relative'>
+            <Link href={"/cart"} className='df'> 
+              <ShoppingCart />
             <p className=' absolute bottom-3 left-5 bg-slate-100 rounded-full text-center w-[20px] h-[20px] text-sm'>{cart.cartItems.length}</p>
-            <Link href={"/cart"} className='df'>   <ShoppingCart /></Link>
+              
+              </Link>
         </div>
     )
 }
