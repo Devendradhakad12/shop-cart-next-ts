@@ -1,6 +1,37 @@
-import React from 'react'
+'use client'
+
+
+import { addItemsToCart, removeItemsToCart } from '@/redux/actions/cartAction'
+import { getProduct } from '@/redux/actions/product-action'
+import { useAppDispatch } from '@/redux/hook'
+import { Delete } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
 
 const DeskTopCart = ({ products, total, subtotal }: { products: any, total: number, subtotal: [] }) => {
+
+
+    const dispatch = useAppDispatch()
+
+    const RemoveHandler = (id: string) => {
+        dispatch(removeItemsToCart(id))
+    }
+
+    useEffect(() => {
+        dispatch(getProduct({}))
+    }, [dispatch])
+
+
+    const PlusTocart = (prevQuntity: number, id: string, stock: number) => {
+        const newQuantity = prevQuntity < stock ? prevQuntity + 1 : prevQuntity
+        prevQuntity < stock && dispatch(addItemsToCart(id, newQuantity))
+    }
+
+    const MinusTocart = (prevQuntity: number, id: string) => {
+        const newQuantity = prevQuntity > 1 ? prevQuntity - 1 : 1
+        prevQuntity > 1 && dispatch(addItemsToCart(id, newQuantity))
+    }
+
+
     return (
         <div className='md:flex hidden justify-center md:items-start items-center mt-[50px] gap-10'>
             <div className='w-[800px]   min-h-[100px] border-opacity-25 opacity-100 border-[0.1px] border-slate-200 '>
@@ -19,8 +50,14 @@ const DeskTopCart = ({ products, total, subtotal }: { products: any, total: numb
                                 <tr key={obj.product._id} className='border-b border-slate-100'>
                                     <td className='text-center'><p className='py-4 flex ml-10 text-orange-500 opacity-100'> <img src={obj.product.images[0].url} className='w-[30px] h-[30px] mr-3' alt="" /> {obj.product.name}</p></td>
                                     <td className='text-center'>₹{obj.product.price}</td>
-                                    <td className='text-center'>{obj.quantity}</td>
-                                    <td className='text-center'>₹{obj.product.price * obj.quantity}</td>
+                                    <td className='text-center'>
+                                        <div className='flex'>
+                                            <button onClick={() => MinusTocart(obj.quantity, obj.product._id)} className='bg-orange-500 text-black w-10 font-bold text-xl rounded-none m-0'>-</button>
+                                            <p className=' border-y border-orange-500 w-10 text-center m-0 '>{obj.quantity}</p>
+                                            <button onClick={() => PlusTocart(obj.quantity, obj.product._id, obj.product.stock)} className='bg-orange-500 text-black w-10 font-bold text-xl rounded-none m-0'>+</button>
+                                        </div>
+                                    </td>
+                                    <td className='text-center h-[70px] flex justify-center items-center'>₹{obj.product.price * obj.quantity} <button className='ml-4' onClick={() => RemoveHandler(obj.product._id)} ><Delete /></button> </td>
                                 </tr>
                             ))
                         }
