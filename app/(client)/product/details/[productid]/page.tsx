@@ -14,12 +14,13 @@ import {
     Rating,
 } from "@mui/material";
 import axios from 'axios'
-import { ShoppingCart } from 'lucide-react'
+import { ShoppingCart, StarIcon } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import ReactImageMagnify from 'react-image-magnify'
+import ReviewCard from './_components/review-card'
 
 const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
     const productid = params.productid
@@ -32,7 +33,7 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
 
     const filteredProduct = products.filter((product) => product?._id === params.productid)
 
-
+  
 
     useEffect(() => {
         if (products.length < 2) dispatch(getProduct({}))
@@ -52,6 +53,7 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("")
     const [success, setSuccess] = useState(false) // for reviews
+    const [revLoading, setRevLoading] = useState(false) // for reviews
 
     const submitReviewToggle = () => {
         open ? setOpen(false) : setOpen(true)
@@ -74,16 +76,20 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
                 productId: productid
             }
             try {
-              //  const { data } = await axios.put(`/api/review`, reviewData, config);
-                //console.log(data)
+                setRevLoading(true)
+                const { data } = await axios.put(`/api/product/${productid}/review`, reviewData, config);
+                console.log(data)
                 toast.success("Review added")
                 setOpen(false)
                 setSuccess(!success)
                 setRating(0)
                 setComment("")
+                dispatch(getProduct({}))
             } catch (error) {
                 toast.error("Something went wrong");
                 console.log(error)
+            }finally{
+                setRevLoading(false)
             }
         }
     }
@@ -135,10 +141,10 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
                                         }
                                     </div>
                                 </div>
-                                <div className=' md:pl-10 pl-20  md:w-[50%]  md:mt-20 mt-10'>
+                                <div className=' md:pl-10 pl-20 flex flex-col justify-center items-center md:items-start   md:w-[50%]  md:mt-20 mt-10'>
                                     <div>
                                         <h3 className='mb-5 capitalize text-orange-600'>{filteredProduct && filteredProduct[0].category}</h3>
-                                        <Rating value={5} size='small' />
+                                        <Rating name="half-rating"    readOnly value={filteredProduct[0].ratings} size='small' />
                                         <h3 className='mb-2 md:text-4xl text-2xl capitalize font-bold font-mono'>{filteredProduct && filteredProduct[0].name}</h3>
                                         <p className='mb-1 md:text-3xl text-xl capitalize font-bold font-mono'>₹{filteredProduct && filteredProduct[0].price}</p>
                                         {
@@ -164,20 +170,19 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
                                                 <DialogTitle>Submit Review</DialogTitle>
                                                 <DialogContent className="flex items-center flex-col md:w-[400px] w-[300px]">
                                                     <Rating onChange={(e:any) => setRating(Number(e.target.value))} value={rating} size="large" />
-                                                    <textarea className="w-full px-10 py-3" rows={4} value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
+                                                    <textarea className="w-full px-10 py-3 border border-opacity-60 border-slate-600" rows={4} value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
                                                 </DialogContent>
                                                 <DialogActions>
                                                     <Button onClick={submitReviewToggle} color="secondary">Cancel</Button>
-                                                    <Button onClick={reviewSubmitHandler}>Submit</Button>
+                                                    <Button onClick={reviewSubmitHandler} className=' disabled:opacity-70' disabled={revLoading}>Submit</Button>
                                                 </DialogActions>
                                             </Dialog>
                                         </div>
-
+                                          
                                     </div>
                                 </div>
-
-
                             </div>
+                                         <ReviewCard reviews={filteredProduct[0].reviews} />
                         </> : <>
                             <div className='flex justify-center items-center mt-10 flex-col'>
                                 Something went wrong! click  below to refresh

@@ -12,7 +12,9 @@ const initialState = {
     name:"",
     description:"",
     price:"",
-    stock:0
+    stock:0,
+    ratings:0,
+    reviews:[]
   }],
   loading:true,
   error:false,

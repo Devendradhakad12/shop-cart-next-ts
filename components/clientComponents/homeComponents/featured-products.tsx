@@ -55,7 +55,7 @@ const FeaturedProducts = () => {
 
                       </div>
                       <div>
-                        <Rating value={5} className='mt-3' size='small' />
+                        <Rating name="half-rating" value={product.ratings} readOnly className='mt-3' size='small' />
                         <h2 className=' text-xl'>{product.name}</h2>
                         <p className=' font-bold'>₹ {product.price}</p>
                       </div>
