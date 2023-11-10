@@ -1,7 +1,7 @@
 'use client'
 
 import Loader from '@/components/loader'
-import { addItemsToCart } from '@/redux/actions/cartAction'
+import { addItemsToCart } from '@/redux/actions/cart-action'
 import { getProduct } from '@/redux/actions/product-action'
 import { useAppDispatch, useAppSelector } from '@/redux/hook'
 import { Rating } from '@mui/material'

@@ -1,17 +1,18 @@
 'use client'
 
 
-import { addItemsToCart, removeItemsToCart } from '@/redux/actions/cartAction'
+import { addItemsToCart, removeItemsToCart } from '@/redux/actions/cart-action'
 import { getProduct } from '@/redux/actions/product-action'
 import { useAppDispatch } from '@/redux/hook'
 import { Delete } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
-const DeskTopCart = ({ products, total, subtotal }: { products: any, total: number, subtotal: [] }) => {
+const DeskTopCart = ({ products, total, totalItem, subtotal }: { products: any, totalItem: number, total: number, subtotal: [] }) => {
 
 
     const dispatch = useAppDispatch()
-
+    const router = useRouter()
     const RemoveHandler = (id: string) => {
         dispatch(removeItemsToCart(id))
     }
@@ -30,6 +31,13 @@ const DeskTopCart = ({ products, total, subtotal }: { products: any, total: numb
         const newQuantity = prevQuntity > 1 ? prevQuntity - 1 : 1
         prevQuntity > 1 && dispatch(addItemsToCart(id, newQuantity))
     }
+
+
+    //* checkout handler
+    const checkout = () => {
+        router.push("/checkout/address")
+    }
+
 
 
     return (
@@ -74,13 +82,13 @@ const DeskTopCart = ({ products, total, subtotal }: { products: any, total: numb
 
                     <div className='flex flex-col  items-center mt-20 gap-5 '>
                         <div className='flex flex-col gap-4'>
-                            <h3>  <span className='text-xl mr-8 '> Total Items :</span> <span className='text-2xl font-bold'> {subtotal.length} </span> </h3>
+                            <h3>  <span className='text-xl mr-8 '> Total Items :</span> <span className='text-2xl font-bold'> {totalItem} </span> </h3>
                             <h3>   <span className='text-xl mr-3 '> Total Amount :</span> <span className='text-2xl font-bold'> ₹{total} </span></h3>
                         </div>
                     </div>
 
                     <div className='flex justify-center items-center mt-20'>
-                        <button className=' button bg-orange-500 text-black font-bold text-2xl px-4 py-3 rounded-lg'>Proceed To Checkout</button>
+                        <button onClick={checkout} className=' button bg-orange-500 text-black font-bold text-2xl px-4 py-3 rounded-lg'>Proceed To Checkout</button>
                     </div>
 
                 </div>

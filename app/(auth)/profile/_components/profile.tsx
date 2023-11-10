@@ -3,7 +3,7 @@
 import Loader from '@/components/loader'
 import { UserAddress } from '@/lib/props'
 import { useAppDispatch } from '@/redux/hook'
-import { logoutUserToken } from '@/redux/slices/user-token'
+import { logoutUserToken } from '@/redux/slices/user-token-slice'
 import axios from 'axios'
 import { Plus } from 'lucide-react'
 import { useRouter } from 'next/navigation'
@@ -32,6 +32,7 @@ const Profile = ({ token }: { token: string }) => {
     city: "",
     state: ""
   })
+  const [showEditOrAdd,setShowEditAdd] = useState(false)
 
 
   useEffect(() => {
@@ -45,6 +46,7 @@ const Profile = ({ token }: { token: string }) => {
         })
         setUserId(res.data._id)
         setAddressInfo(res.data.address)
+        setShowEditAdd(res.data.address && true)
         //  console.log(res.data)
       } catch (error) {
         console.log(error)
@@ -61,8 +63,8 @@ const Profile = ({ token }: { token: string }) => {
       setUserId("")
     }
   }, [])
-
-
+ 
+ 
 
   // profile update handler
   const profileUpdate = async () => {
@@ -134,30 +136,30 @@ const Profile = ({ token }: { token: string }) => {
 
                 {/* Address info */}
                 <div className=' bg-slate-800 md:w-[500px] w-[90%] flex flex-col items-center justify-center shadow-sm shadow-orange-400 py-14 my-5'>
-                  <div className='flex gap-5 pb-5 justify-center items-center'>   <h2 className='text-xl'>Manage Address</h2> {editAddress && <button onClick={() => setEditAddress(false)} className='bg-sky-600 px-3 rounded-md font-bold flex py-2' >  {AddressInfo.pincode !== null ? <>Edit</> : <>Add <Plus /></>}  </button>}</div>
+                  <div className='flex gap-5 pb-5 justify-center items-center'>   <h2 className='text-xl'>Manage Address</h2> {editAddress && <button onClick={() => setEditAddress(false)} className='bg-sky-600 px-3 rounded-md font-bold flex py-2' >  {showEditOrAdd ? <>Edit</> : <>Add <Plus /></>}  </button>}</div>
                   <div>
                     <div >
                       {
                         !editAddress ? <form onSubmit={addAddressHandler} className='flex flex-wrap justify-center items-center gap-5'>
-                          <input type="text" className='inputAddress bg-transparent' placeholder='Full Name' value={AddressInfo.name} onChange={(e) => setAddressInfo({ ...AddressInfo, name: e.target.value })} required />
+                          <input type="text" className='inputAddress bg-transparent' placeholder='Full Name' value={AddressInfo?.name} onChange={(e) => setAddressInfo({ ...AddressInfo, name: e.target.value })} required />
 
-                          <input type="number" className='inputAddress bg-transparent' placeholder='Mobile' value={AddressInfo.mobile ? AddressInfo.mobile : ""} onChange={(e) => setAddressInfo({ ...AddressInfo, mobile: Number(e.target.value) })} required />
+                          <input type="number" className='inputAddress bg-transparent' placeholder='Mobile' value={AddressInfo?.mobile ? AddressInfo.mobile : ""} onChange={(e) => setAddressInfo({ ...AddressInfo, mobile: Number(e.target.value) })} required />
 
-                          <input type="number" className='inputAddress bg-transparent' placeholder='Pincode' value={AddressInfo.pincode ? AddressInfo.pincode : ""} onChange={(e) => setAddressInfo({ ...AddressInfo, pincode: Number(e.target.value) })} required />
+                          <input type="number" className='inputAddress bg-transparent' placeholder='Pincode' value={AddressInfo?.pincode ? AddressInfo.pincode : ""} onChange={(e) => setAddressInfo({ ...AddressInfo, pincode: Number(e.target.value) })} required />
 
-                          <input type="text" className='inputAddress bg-transparent' placeholder='Locality' value={AddressInfo.locality} onChange={(e) => setAddressInfo({ ...AddressInfo, locality: e.target.value })} required />
+                          <input type="text" className='inputAddress bg-transparent' placeholder='Locality' value={AddressInfo?.locality} onChange={(e) => setAddressInfo({ ...AddressInfo, locality: e.target.value })} required />
 
-                          <input type="text" className='inputAddress bg-transparent' placeholder='City' value={AddressInfo.city}
+                          <input type="text" className='inputAddress bg-transparent' placeholder='City' value={AddressInfo?.city}
                             onChange={(e) => setAddressInfo({ ...AddressInfo, city: e.target.value })}
                             required />
 
-                          <input type="text" className='inputAddress bg-transparent' placeholder='State' value={AddressInfo.state}
+                          <input type="text" className='inputAddress bg-transparent' placeholder='State' value={AddressInfo?.state}
                             onChange={(e) => setAddressInfo({ ...AddressInfo, state: e.target.value })}
                             required />
 
-                          <button className='bg-sky-600 px-3 rounded-md font-bold flex py-2'>{editAddressLod ? <>{AddressInfo.pincode !== null ? <>Edit...</> : <>Add...</>} </> : <>{AddressInfo.pincode !== null ? <>Edit</> : <>Add <Plus /></>} </>}</button>
-                        </form> : <p className='mx-10 text-center'> {AddressInfo.pincode !== null ? <>
-                          {AddressInfo.name}, {AddressInfo.locality} , {AddressInfo.city} , {AddressInfo.state}, Pincode - {AddressInfo.pincode} , Mobile - {AddressInfo.mobile}
+                          <button className='bg-sky-600 px-3 rounded-md font-bold flex py-2'>{editAddressLod ? <>{showEditOrAdd ? <>Edit...</> : <>Add...</>} </> : <>{showEditOrAdd ? <>Edit</> : <>Add <Plus /></>} </>}</button>
+                        </form> : <p className='mx-10 text-center'> {AddressInfo ? <>
+                          {AddressInfo?.name}, {AddressInfo?.locality} , {AddressInfo?.city} , {AddressInfo?.state}, Pincode - {AddressInfo?.pincode} , Mobile - {AddressInfo?.mobile}
                         </> : <>Please Add Address</>} </p>
                       }
                     </div>

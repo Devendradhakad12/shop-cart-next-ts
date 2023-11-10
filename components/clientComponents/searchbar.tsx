@@ -1,6 +1,6 @@
 'use client'
 import { useAppDispatch } from '@/redux/hook'
-import { setUserToken } from '@/redux/slices/user-token'
+import { setUserToken } from '@/redux/slices/user-token-slice'
 import { Search } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'

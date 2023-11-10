@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema(
         pincode: Number,
         locality: String, 
         city: String,
-        state: String,
+        state: String, 
       },
     
     orders: [

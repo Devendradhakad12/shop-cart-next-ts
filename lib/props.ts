@@ -12,6 +12,7 @@ export interface DataStoredInToken {
     id:string,
     role:string,
     name:string,
+    email:string
 }
 
 // user address prop

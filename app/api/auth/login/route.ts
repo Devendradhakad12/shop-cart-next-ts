@@ -26,7 +26,7 @@ export async function POST(req: Request) {
       return new NextResponse("wrong email or password", { status: 401 });
 
 
-      const tokenData:DataStoredInToken = { id: user._id,role:user.role,name:user.name }
+      const tokenData:DataStoredInToken = { id: user._id,role:user.role,name:user.name,email:user.email }
     const token = jwt.sign(tokenData, process.env.JWT_SECRETE!);
 
     cookies().set({

@@ -14,12 +14,13 @@ const CartPage = () => {
     return obj.product.price * obj.quantity
   })
   const total = subtotal.reduce((acc: number, price: number) => acc + price, 0)
+  const totalItem = products.reduce((acc: number, product:any) => acc + product.quantity, 0)
 
   return (
     <>
       <h2 className='text-center text-4xl mt-14 text-orange-500 italic font-mono'>Cart</h2>
-      <DeskTopCart products={products} total={total} subtotal={subtotal} />
-      <MobileCart products={products} total={total} subtotal={subtotal} />
+      <DeskTopCart products={products} total={total} subtotal={subtotal} totalItem={totalItem} />
+      <MobileCart products={products} total={total} subtotal={subtotal} totalItem={totalItem} />
     </>
   )
 }

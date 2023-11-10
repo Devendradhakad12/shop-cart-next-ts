@@ -8,7 +8,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
 import './globals.scss'
-
+import Script from 'next/script'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -39,6 +39,7 @@ export default async function RootLayout({
      
         </Providers>
       </body>
+      <Script src="https://checkout.razorpay.com/v1/checkout.js"/>
     </html>
   )
 }

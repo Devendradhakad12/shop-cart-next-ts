@@ -2,7 +2,11 @@ import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   token: "",
-  user: {},
+  user: {
+    name:"",
+    email:"",
+    id:""
+  },
 };
 const userTokenSlice = createSlice({
   name: "cart",
@@ -12,7 +16,7 @@ const userTokenSlice = createSlice({
       (state.token = action.payload.token), (state.user = action.payload.user);
     },
     logoutUserToken(state) {
-      (state.token = ""), (state.user = {});
+      (state.token = ""), (state.user = {name:"",email:"",id:""});
     },
   },
 });

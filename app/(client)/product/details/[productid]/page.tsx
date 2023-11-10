@@ -2,7 +2,7 @@
 
 
 import Loader from '@/components/loader'
-import { addItemsToCart } from '@/redux/actions/cartAction'
+import { addItemsToCart } from '@/redux/actions/cart-action'
 import { getProduct } from '@/redux/actions/product-action'
 import { useAppDispatch, useAppSelector } from '@/redux/hook'
 import {
@@ -33,7 +33,7 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
 
     const filteredProduct = products.filter((product) => product?._id === params.productid)
 
-  
+
 
     useEffect(() => {
         if (products.length < 2) dispatch(getProduct({}))
@@ -88,7 +88,7 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
             } catch (error) {
                 toast.error("Something went wrong");
                 console.log(error)
-            }finally{
+            } finally {
                 setRevLoading(false)
             }
         }
@@ -144,7 +144,7 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
                                 <div className=' md:pl-10 pl-20 flex flex-col justify-center items-center md:items-start   md:w-[50%]  md:mt-20 mt-10'>
                                     <div>
                                         <h3 className='mb-5 capitalize text-orange-600'>{filteredProduct && filteredProduct[0].category}</h3>
-                                        <Rating name="half-rating"    readOnly value={filteredProduct[0].ratings} size='small' />
+                                        <Rating name="half-rating" readOnly value={filteredProduct[0].ratings} size='small' />
                                         <h3 className='mb-2 md:text-4xl text-2xl capitalize font-bold font-mono'>{filteredProduct && filteredProduct[0].name}</h3>
                                         <p className='mb-1 md:text-3xl text-xl capitalize font-bold font-mono'>₹{filteredProduct && filteredProduct[0].price}</p>
                                         {
@@ -161,15 +161,15 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
                                         <p className='md:text-2xl text-lg capitalize'>{filteredProduct && filteredProduct[0].description}</p>
 
                                         <div className='mb-10 mt-5'>
-                                            {/* Submit review */} 
-                                            <button className=" bg-amber-500 text-black px-2 py-2 rounded-xl font-bold text-xl button" onClick={()=>setOpen(true)}>Submit Review</button>
+                                            {/* Submit review */}
+                                            <button className=" bg-amber-500 text-black px-2 py-2 rounded-xl font-bold text-xl button" onClick={() => setOpen(true)}>Submit Review</button>
                                             <Dialog
                                                 open={open}
                                                 onClose={submitReviewToggle}
                                             >
                                                 <DialogTitle>Submit Review</DialogTitle>
                                                 <DialogContent className="flex items-center flex-col md:w-[400px] w-[300px]">
-                                                    <Rating onChange={(e:any) => setRating(Number(e.target.value))} value={rating} size="large" />
+                                                    <Rating onChange={(e: any) => setRating(Number(e.target.value))} value={rating} size="large" />
                                                     <textarea className="w-full px-10 py-3 border border-opacity-60 border-slate-600" rows={4} value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
                                                 </DialogContent>
                                                 <DialogActions>
@@ -178,11 +178,11 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
                                                 </DialogActions>
                                             </Dialog>
                                         </div>
-                                          
+
                                     </div>
                                 </div>
                             </div>
-                                         <ReviewCard reviews={filteredProduct[0].reviews} />
+                            <ReviewCard reviews={filteredProduct[0].reviews} />
                         </> : <>
                             <div className='flex justify-center items-center mt-10 flex-col'>
                                 Something went wrong! click  below to refresh

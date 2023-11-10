@@ -29,7 +29,7 @@ const addToCartSlice = createSlice({
   
 
   },
-});
+}); 
 
 export const {addTocart,revmoveToCart } = addToCartSlice.actions
 

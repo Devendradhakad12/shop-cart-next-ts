@@ -1,6 +1,7 @@
 import mongoose, { models } from "mongoose";
 
-const orderSchema = new mongoose.Schema({
+const orderSchema = new mongoose.Schema(
+  {
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -22,36 +23,46 @@ const orderSchema = new mongoose.Schema({
       type: Number,
       required: true,
     },
+    totalItem: {
+      type: Number,
+      required: true,
+    },
     status: {
       type: String,
       enum: ["pending", "processing", "shipped", "delivered", "canceled"],
       default: "pending",
     },
     shippingAddress: {
-      street: String,
+      name: String,
+      mobile: Number,
+      pincode: Number,
+      locality: String,
       city: String,
       state: String,
-      postalCode: String,
-      phone:Number
     },
-    // Add support for order discounts and coupons
-    discount: {
-      type: Number,
-      default: 0,
-    },
-  
+
     // Track the date the order was placed
     createdAt: {
       type: Date,
       default: Date.now,
     },
-  
+
     // Include payment details, such as payment method, transaction ID, etc.
     payment: {
-      method: String,
-      transactionID: String,
+      razorpay_payment_id: {
+        type: String,
+        required: true,
+      },
+      razorpay_order_id: {
+        type: String,
+        required: true,
+      },
+      razorpay_signature: {
+        type: String,
+        required: true,
+      },
     },
-  
+
     // Support for order returns and refunds
     isReturnRequested: {
       type: Boolean,
@@ -61,7 +72,7 @@ const orderSchema = new mongoose.Schema({
       type: Boolean,
       default: false,
     },
-  
+
     // Track the date when the order was shipped and delivered
     shippedAt: {
       type: Date,
@@ -69,16 +80,18 @@ const orderSchema = new mongoose.Schema({
     deliveredAt: {
       type: Date,
     },
-  
+
     // Include delivery tracking information
     trackingInfo: {
       carrier: String,
       trackingNumber: String,
       trackingLink: String,
     },
-  
+
     // Support for order notes or messages
     notes: String,
-  });
+  },
+  { timestamps: true }
+);
 
-  export const Order = models.Order || mongoose.model("Order",orderSchema)
+export const Order = models.Order || mongoose.model("Order", orderSchema);

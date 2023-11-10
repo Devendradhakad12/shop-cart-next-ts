@@ -23,7 +23,7 @@ export async function POST(req: Request) {
       password: hashPassword,
       name: username,
     });
-    const token = jwt.sign({ id: user._id,role:user.role,name:user.name }, process.env.JWT_SECRETE!);
+    const token = jwt.sign({ id: user._id,role:user.role,name:user.name,email:user.email }, process.env.JWT_SECRETE!);
 
     cookies().set({
       name: "scat",

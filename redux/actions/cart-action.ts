@@ -2,7 +2,7 @@ import axios from "axios"
  
 import toast from "react-hot-toast";
 import { AppDispatch } from "../store";
-import { addTocart, revmoveToCart } from "../slices/cartSlice";
+import { addTocart, revmoveToCart } from "../slices/cart-slice";
  
 //add to cart
 export const addItemsToCart = (id:string,quantity:number) => async (dispatch:AppDispatch,getState:any)=>{
@@ -27,4 +27,4 @@ export const removeItemsToCart = (id:string) => async (dispatch:AppDispatch,getS
     } catch (error) {
         console.log(error)
     }
-    } 
+    }  
