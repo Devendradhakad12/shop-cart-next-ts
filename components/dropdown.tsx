@@ -4,7 +4,7 @@ import { DataStoredInToken, userProps } from "@/lib/props";
 import { useAppSelector } from "@/redux/hook";
 import { Backdrop, SpeedDial, SpeedDialAction, SpeedDialIcon } from "@mui/material";
 import axios from "axios";
-import { Home, LayoutDashboard, List, LogIn, ShoppingCart, User } from 'lucide-react';
+import { Box, Home, LayoutDashboard, List, LogIn, ShoppingCart, User } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -34,7 +34,7 @@ const Dropdown = ({ token,user }: DropdownProps) => {
  
 
         {
-            icon: <List />,
+            icon: <Box />,
             name: "Orders",
             func: order,
         },
@@ -67,7 +67,7 @@ const Dropdown = ({ token,user }: DropdownProps) => {
         router.replace("/admin/dashboard")
     }
     function order() {
-        router.replace("/order/me")
+        router.replace("/orders")
     }
     function account() {
         router.replace("/account")

@@ -88,7 +88,7 @@ const DeskTopCart = ({ products, total, totalItem, subtotal }: { products: any, 
                     </div>
 
                     <div className='flex justify-center items-center mt-20'>
-                        <button onClick={checkout} className=' button bg-orange-500 text-black font-bold text-2xl px-4 py-3 rounded-lg'>Proceed To Checkout</button>
+                        <button onClick={checkout} disabled={!products.length} className=' disabled:opacity-50 button bg-orange-500 text-black font-bold text-2xl px-4 py-3 rounded-lg'>Proceed To Checkout</button>
                     </div>
 
                 </div>

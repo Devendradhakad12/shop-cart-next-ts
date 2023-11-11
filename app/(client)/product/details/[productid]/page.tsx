@@ -162,7 +162,7 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
 
                                         <div className='mb-10 mt-5'>
                                             {/* Submit review */}
-                                            <button className=" bg-amber-500 text-black px-2 py-2 rounded-xl font-bold text-xl button" onClick={() => setOpen(true)}>Submit Review</button>
+                                            <button className=" bg-amber-500 text-black px-2 py-2 rounded-xl font-bold text-xl button" onClick={() => { if (!token) { router.push("/login") } else { setOpen(true) } }}>Submit Review</button>
                                             <Dialog
                                                 open={open}
                                                 onClose={submitReviewToggle}

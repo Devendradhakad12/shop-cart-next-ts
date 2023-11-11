@@ -38,7 +38,7 @@ const ProductEditPage = ({ params }: { params: { productid: string } }) => {
                 setProductStock(data.stock)
                 setProductCategory(data.category)
                 setOldImages(data.images)
-                console.log(res)
+               
             } catch (error) {
                 toast.error("Something went wrong")
                 console.log(error)
@@ -49,7 +49,7 @@ const ProductEditPage = ({ params }: { params: { productid: string } }) => {
         getProductDetails()
     }, [params.productid])
 
-console.log(oldImages)
+ 
     // set images in state
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFiles = e.target.files;
