@@ -46,21 +46,29 @@ const orderSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
+    orderId: {
+      type:String,
+      required: true,
+    },
+
+
 
     // Include payment details, such as payment method, transaction ID, etc.
     payment: {
       razorpay_payment_id: {
-        type: String,
-        required: true,
+        type: String, 
       },
       razorpay_order_id: {
         type: String,
-        required: true,
       },
       razorpay_signature: {
         type: String,
-        required: true,
       },
+    },
+
+    paymentStatus:{
+      type:String,
+      enum:["paid","pending"]
     },
 
     // Support for order returns and refunds
