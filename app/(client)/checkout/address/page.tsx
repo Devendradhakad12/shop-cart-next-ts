@@ -7,12 +7,13 @@ import { useAppDispatch, useAppSelector } from '@/redux/hook'
 import addressSlice, { setUseraddress } from '@/redux/slices/address-slice'
 import axios from 'axios'
 import { Plus } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { FormEvent, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
 const CheckOutAddressPage = () => {
-
+    const productid = useSearchParams().get("productid") 
+ 
     const router = useRouter()
     const [loading, setLoading] = useState(true) // Show loading when loading user data for the first time
     const [userid, setUserId] = useState("")   // store user id when userdata loaded
@@ -25,7 +26,7 @@ const CheckOutAddressPage = () => {
         name: "",
         mobile: null,
         pincode: null,
-        locality: "",
+        locality: "", 
         city: "",
         state: ""
     })
@@ -74,7 +75,7 @@ const CheckOutAddressPage = () => {
                 toast.error("Something went wrong")
             } finally {
                 setEditAddressLod(false)
-            }
+            } 
         }
 
     }
@@ -83,7 +84,11 @@ const CheckOutAddressPage = () => {
     //* confirm order handler
     const continewoConfirmOrder = () =>{
       if(address){
-        router.push("/checkout/confirm-order")
+        if(productid){
+            router.push(`/checkout/confirm?productid=${productid}`)
+        }else{
+            router.push("/checkout/confirm-order")
+        }
       }
       else{
         toast.error("Please Add Address")

@@ -2,16 +2,19 @@
 import Loader from '@/components/loader'
 import { useAppSelector } from '@/redux/hook'
 import axios from 'axios'
-import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
 
-const ConfirmOrderPage = () => {
+const ConfirmOrderPage =  () => {
+
   const router = useRouter()
   const { address } = useAppSelector((state) => state.address)
   const { cart } = useAppSelector((state) => state.cart)
   const { user } = useAppSelector((state) => state.userToken)
   const products = cart.cartItems
+ 
+
   // calculate total price
   const subtotal = products.map((obj: any) => {
     return obj.product.price * obj.quantity
@@ -23,7 +26,7 @@ const ConfirmOrderPage = () => {
   /*    console.log(products)
     console.log(totalItem) */
 
-  //* order confirm handler
+  //* order confirm handler 
 
   const confirmOrder = async () => {
     try {
@@ -90,6 +93,9 @@ const ConfirmOrderPage = () => {
       setLoading(false)
     }
   }
+
+
+
 
   return (
     <div className='mt-8 flex justify-center items-center flex-col'>

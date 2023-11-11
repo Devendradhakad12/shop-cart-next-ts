@@ -5,16 +5,17 @@ import { addItemsToCart } from '@/redux/actions/cart-action'
 import { getProduct } from '@/redux/actions/product-action'
 import { useAppDispatch, useAppSelector } from '@/redux/hook'
 import { Rating } from '@mui/material'
-import { useRouter } from 'next/navigation'
+import {  useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 const FeaturedProducts = () => {
+
   const { products, loading, error } = useAppSelector((state) => state.products)
   const dispatch = useAppDispatch()
   const router = useRouter()
 
   useEffect(() => {
-    dispatch(getProduct({})) 
+    dispatch(getProduct({}))
   }, [dispatch])
 
   // console.log(products)
@@ -26,7 +27,10 @@ const FeaturedProducts = () => {
 
   const addToCart = (id: string) => {
     dispatch(addItemsToCart(id, 1))
-}
+  }
+  const shopNowHandler = (id: string) => {
+    router.push(`/checkout/address?productid=${id}`)
+  }
 
   return (
     <div className='md:pt-10 pt-2 relative featureProduct'>
@@ -43,7 +47,7 @@ const FeaturedProducts = () => {
 
         {/* product  */}
         {
-          loading ? <Loader /> : <>{products.length >= 1?
+          loading ? <Loader /> : <>{products[0].name !== "" ?
             <>
               {
                 products && products.map((product: any) => (
@@ -60,10 +64,10 @@ const FeaturedProducts = () => {
                         <p className=' font-bold'>₹ {product.price}</p>
                       </div>
                     </button>
-                    <div className='mt-3 text-center'>
+                    <div className='mt-3 text-center justify-center items-center flex gap-2'>
 
-                      <button onClick={()=>addToCart(product._id)} className='button bg-orange-600 text-sm text-black mr-2 px-3 py-2'>ADD TO CART</button>
-                      {/*       <button className='bg-orange-600 text-sm text-black ml-2 px-3 py-2' >BUY</button> */}
+                      <button onClick={() => addToCart(product._id)} className='button bg-orange-600 md:text-sm text-xs text-black mr-2 px-3 py-1'>ADD TO CART</button>
+                      <button onClick={() => shopNowHandler(product._id)} className='bg-orange-600 button md:text-sm  text-xs font-bold text-black ml-2 px-3 py-1' >BUY</button>
                     </div>
                   </div>
 

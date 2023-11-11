@@ -6,7 +6,7 @@ import { Product } from "@/models/product.model";
 import { NextResponse } from "next/server";
 
 // get single product
-export async function GET(
+export async function GET( 
   req: Request,
   { params }: { params: { productid: string } }
 ) {
