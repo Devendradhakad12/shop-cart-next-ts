@@ -31,7 +31,7 @@ const ConfirmOrderPage = () => {
         getProduct()
     }, [productid])
 
-    console.log(products)
+
 
     const [loading, setLoading] = useState(false)
     const [confirmOrderLoading, setConfirmOrderLoading] = useState(false)
@@ -43,7 +43,7 @@ const ConfirmOrderPage = () => {
         try {
             setLoading(true)
             const data = {
-                products,
+                products: [{ product: products[0], quantity: 1 }],
                 amount: products[0]?.price,
                 shippingAddress: address,
                 totalItem: 1
@@ -129,8 +129,18 @@ const ConfirmOrderPage = () => {
                                         Sorry! Product Not Found
                                     </>
                                 }
+
                             </div>
+
                     }
+
+                    <div className='mt-5 mb-5 gap-4 flex flex-col justify-center items-center'>
+                        <h2 className=' text-3xl'>Payment Guide</h2>
+                        <video controls className='md:w-[40%] w-[70%]' src="https://res.cloudinary.com/dvkfio4zq/video/upload/v1699766710/shopcart/ofdovcplfr6y0zndch3a.mkv"></video>
+                        <p >Card Number - 4111 1111 1111 1111 </p>
+                        <p>Expiry - 12/33</p>
+                        <p className='mb-10'>CVV - 123</p>
+                    </div>
                 </>
             }
         </div>

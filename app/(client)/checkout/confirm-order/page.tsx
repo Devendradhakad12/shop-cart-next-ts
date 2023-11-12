@@ -13,7 +13,7 @@ const ConfirmOrderPage =  () => {
   const { cart } = useAppSelector((state) => state.cart)
   const { user } = useAppSelector((state) => state.userToken)
   const products = cart.cartItems
- 
+ console.log(products)
 
   // calculate total price
   const subtotal = products.map((obj: any) => {

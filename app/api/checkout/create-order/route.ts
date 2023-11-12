@@ -21,7 +21,7 @@ export async function POST(req:Request) {
         if(!token || !user ) new NextResponse("Unauthorized", { status: 500 });
           
         const {products,amount,shippingAddress,totalItem} = await  req.json() 
-        console.log(products,amount,shippingAddress,totalItem)
+    
         const options = {
             amount: Number(amount * 100), // amount in the smallest currency unit Rs. 500
             currency: "INR",
