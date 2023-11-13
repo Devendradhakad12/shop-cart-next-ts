@@ -13,7 +13,7 @@ const ConfirmOrderPage = () => {
   const { cart } = useAppSelector((state) => state.cart)
   const { user } = useAppSelector((state) => state.userToken)
   const products = cart.cartItems
-  console.log(products)
+ // console.log(products)
 
   // calculate total price
   const subtotal = products.map((obj: any) => {
@@ -29,6 +29,7 @@ const ConfirmOrderPage = () => {
   //* order confirm handler 
 
   const confirmOrder = async () => {
+    
     try {
       setLoading(true)
       const data = {
@@ -40,7 +41,7 @@ const ConfirmOrderPage = () => {
       const order: any = await axios.post("/api/checkout/create-order", data)
 
       const options = {
-        key: "rzp_test_1EBareX6d8Ne1z", // Enter the Key ID generated from the Dashboard
+        key:"rzp_test_1EBareX6d8Ne1z", // Enter the Key ID generated from the Dashboard
         amount: order.data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
         currency: "INR",
         name: "Dev Dhaakd",

@@ -25,7 +25,7 @@ export async function GET(req:Request) {
     const query  = {keyword,page,price,category}
 
     // search , filter and pagination product using apiFeature
-    const resultPerPage = 10
+    const resultPerPage = 4
     const apiFeature = new ApiFeatures(Product.find(),query).search().pagination(resultPerPage).filter()
     const products = await apiFeature.query;  
  

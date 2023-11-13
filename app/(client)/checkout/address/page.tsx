@@ -35,7 +35,7 @@ const CheckOutAddressPage = () => {
 
     useEffect(() => {
      
-        async function getUserInfo() {
+        async function getUserInfo() { 
             setLoading(true)
             try {
                 const res = await axios.get("/api/auth/user/userinfo")

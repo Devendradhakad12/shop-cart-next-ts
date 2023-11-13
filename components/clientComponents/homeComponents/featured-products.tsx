@@ -15,7 +15,7 @@ const FeaturedProducts = () => {
   const router = useRouter()
 
   useEffect(() => {
-    dispatch(getProduct({}))
+    dispatch(getProduct({})) 
   }, [dispatch])
 
   // console.log(products)
@@ -28,8 +28,8 @@ const FeaturedProducts = () => {
   const addToCart = (id: string) => {
     dispatch(addItemsToCart(id, 1))
   }
-  const shopNowHandler = (id: string) => {
-    router.push(`/checkout/address?productid=${id}`)
+  const shopNowHandler = (id: string) => { 
+    router.push(`/checkout/address?productid=${id}`) 
   }
 
   return (

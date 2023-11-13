@@ -7,10 +7,10 @@ import { addTocart, revmoveToCart } from "../slices/cart-slice";
 //add to cart
 export const addItemsToCart = (id:string,quantity:number) => async (dispatch:AppDispatch,getState:any)=>{
 try {
-    const product = getState().products.products.filter((product:any) => product?._id === id) || []
-   // console.log(getState())
+    const res = await axios.get(`/api/product/${id}`)
+    const product = [res.data] 
     dispatch(addTocart({product:product[0],quantity}))
-    localStorage.setItem("cartItems",JSON.stringify(getState().cart.cart.cartItems))  
+    localStorage.setItem("cartItems",JSON.stringify(getState().cart.cart.cartItems))   
     toast.success("Item added to cart")
 } catch (error) {
     console.log(error) 
@@ -27,4 +27,4 @@ export const removeItemsToCart = (id:string) => async (dispatch:AppDispatch,getS
     } catch (error) {
         console.log(error)
     }
-    }  
+    }   

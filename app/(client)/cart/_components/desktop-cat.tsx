@@ -18,7 +18,7 @@ const DeskTopCart = ({ products, total, totalItem, subtotal }: { products: any, 
     }
 
     useEffect(() => {
-        dispatch(getProduct({}))
+        dispatch(getProduct({})) 
     }, [dispatch])
 
 

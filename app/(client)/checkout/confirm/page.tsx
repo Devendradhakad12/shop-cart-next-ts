@@ -8,10 +8,8 @@ import toast from 'react-hot-toast'
 
 const ConfirmOrderPage = () => {
     const productid = useSearchParams().get("productid")
-
     const router = useRouter()
     const { address } = useAppSelector((state) => state.address)
-
     const { user } = useAppSelector((state) => state.userToken)
     const [productFetchLoading, setProdctFetchLoading] = useState(false)
     const [products, setProduct] = useState<{ price: number, name: string }[]>([])
@@ -28,7 +26,7 @@ const ConfirmOrderPage = () => {
                 setProdctFetchLoading(false)
             }
         }
-        getProduct()
+        getProduct() 
     }, [productid])
 
 
@@ -40,6 +38,7 @@ const ConfirmOrderPage = () => {
     //* order confirm handler 
 
     const confirmOrder = async () => {
+        
         try {
             setLoading(true)
             const data = {
@@ -50,8 +49,8 @@ const ConfirmOrderPage = () => {
             }
             const order: any = await axios.post("/api/checkout/create-order", data)
 
-            const options = {
-                key: "rzp_test_1EBareX6d8Ne1z", // Enter the Key ID generated from the Dashboard
+            const options = { 
+                key:"rzp_test_1EBareX6d8Ne1z",// ApiKey,//process.env.RAZORPAY_API_KEY,   // Enter the Key ID generated from the Dashboard
                 amount: order.data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
                 currency: "INR",
                 name: "Dev Dhaakd",
