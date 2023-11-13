@@ -1,4 +1,5 @@
 import { Details } from '@mui/icons-material'
+import Link from 'next/link'
  
 
 const DeskTopCart = ({  orders }: {  orders: {}[]}) => {
@@ -29,7 +30,7 @@ const DeskTopCart = ({  orders }: {  orders: {}[]}) => {
                                         {order.totalItem}
                                         </div>
                                     </td>
-                                    <td className='text-center h-[70px] flex justify-center items-center'> <button  className='text-green-500'  >Details</button> </td>
+                                    <td className='text-center h-[70px] flex justify-center items-center'> <Link href={`/orders/${order._id}/details`} className='text-green-500'  >Details</Link> </td>
                                 </tr>
                             ))
                         }

@@ -94,3 +94,4 @@ const MobileCart = ({ products, total,totalItem, subtotal }: { products: any,tot
 }
 
 export default MobileCart
+    

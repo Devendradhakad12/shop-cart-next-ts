@@ -6,14 +6,14 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 
-const ConfirmOrderPage =  () => {
+const ConfirmOrderPage = () => {
 
   const router = useRouter()
   const { address } = useAppSelector((state) => state.address)
   const { cart } = useAppSelector((state) => state.cart)
   const { user } = useAppSelector((state) => state.userToken)
   const products = cart.cartItems
- console.log(products)
+  console.log(products)
 
   // calculate total price
   const subtotal = products.map((obj: any) => {
@@ -112,6 +112,13 @@ const ConfirmOrderPage =  () => {
             <button disabled={loading} onClick={confirmOrder} className=' disabled:opacity-40 mt-10 button bg-orange-500 text-black px-3 py-1 rounded-lg text-xl font-bold'>Confirm Order</button>
           </div>
       }
+      <div className='mt-5 mb-5 gap-4 flex flex-col justify-center items-center'>
+        <h2 className=' text-3xl'>Payment Guide</h2>
+        <video controls className='md:w-[40%] w-[70%]' src="https://res.cloudinary.com/dvkfio4zq/video/upload/v1699766710/shopcart/ofdovcplfr6y0zndch3a.mkv"></video>
+        <p >Card Number - 4111 1111 1111 1111 </p>
+        <p>Expiry - 12/33</p>
+        <p className='mb-10'>CVV - 123</p>
+      </div>
     </div>
   )
 }

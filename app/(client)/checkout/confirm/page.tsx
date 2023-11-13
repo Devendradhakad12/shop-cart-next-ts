@@ -119,7 +119,7 @@ const ConfirmOrderPage = () => {
                                     products.length ? <>
                                         <h2 className='font-mono text-2xl '>Confirm Order</h2>
                                         <p className='mt-4 text-xl flex justify-center w-[100%]'>
-                                            <span> {products[0].name}</span>
+                                          <span>Product :</span>  <span className='ml-5'> {products[0].name}</span>
                                         </p>
                                         <p className=' text-xl mt-5 flex justify-center w-[50%]'>
                                             <span className=' mr-5'>Price : </span> ₹{products[0]?.price}

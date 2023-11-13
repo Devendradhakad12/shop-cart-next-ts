@@ -65,27 +65,34 @@ const Dropdown = ({ token,user }: DropdownProps) => {
 
     function dashboard() {
         router.replace("/admin/dashboard")
+        setOpen(false)
     }
     function order() {
         router.replace("/orders")
+        setOpen(false)
     }
     function account() {
         router.replace("/account")
+        setOpen(false)
 
     }
     function cart() {
         router.replace("/cart")
+        setOpen(false)
 
 
     }
     function home() {
         router.replace("/")
+        setOpen(false)
     }
     function profile() {
         router.replace("/profile")
+        setOpen(false)
     }
     function logIn() {
         router.replace("/login")
+        setOpen(false)
     }
 
     return (
