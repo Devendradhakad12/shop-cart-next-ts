@@ -1,16 +1,14 @@
 'use client'
-import React from 'react'
-import { TreeItem, TreeView } from "@mui/x-tree-view";
 import {
-    AddOutlined,
+  AddOutlined,
   DashboardOutlined,
   ExpandMoreOutlined,
   ImportExportOutlined,
   ListAltOutlined,
   PeopleOutline,
-  PostAddOutlined,
-  RateReviewOutlined,
+  PostAddOutlined
 } from "@mui/icons-material";
+import { TreeItem, TreeView } from "@mui/x-tree-view";
 import Link from 'next/link';
 
 const Sidebar = () => {
@@ -48,18 +46,13 @@ const Sidebar = () => {
           Orders
       </p>
     </Link>
-    <Link href={"/admin/user"}>
+    <Link href={"/admin/users"}>
       <p>
           <PeopleOutline/>
           Users
       </p>
     </Link>
-{/*     <Link href={"/admin/reviews"}>
-      <p>
-          <RateReviewOutlined/>
-          Reviews
-      </p>
-    </Link> */}
+ 
   </div>
   )
 }

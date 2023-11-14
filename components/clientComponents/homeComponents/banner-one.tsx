@@ -9,7 +9,7 @@ const BannerOne = () => {
  <p>NEW COLLECTION</p>
 <h2 className=' font-mono md:text-5xl text-3xl font-bold md:text-start text-center md:w-[300px] '>ShopCart  New Laptops</h2>
 <p className='md:w-[60%] w-[95%] md:text-start text-center'>Whether you prefer the charm of classic these decorations invite you to all things eerie, enigmatic, and enchanting.</p>
-<Link href={"/product/laptop"} className='rounded-xl px-2 py-2 mt-10 bg-sky-500 font-bold text-black w-[150px] text-center flex justify-center items-center  text-xl'>Shop Now</Link>
+<Link href={"/product/query"} className='rounded-xl px-2 py-2 mt-10 bg-sky-500 font-bold text-black w-[150px] text-center flex justify-center items-center  text-xl'>Shop Now</Link>
     </div>
   )
 }
