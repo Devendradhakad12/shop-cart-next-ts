@@ -11,7 +11,7 @@ const SearchBar = ({token,user}:{token:string | undefined,user:{}}) => {
     const dispatch = useAppDispatch()
     const onSearch = ()  =>{
       if(keyword) {
-        router.push(`/product/${keyword}`)
+        router.push(`/product/query?keyword=${keyword}`)
         setKeyword("")
     }}
 

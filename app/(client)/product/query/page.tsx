@@ -6,11 +6,11 @@ import { addItemsToCart } from '@/redux/actions/cart-action'
 import { getProduct } from '@/redux/actions/product-action'
 import { useAppDispatch, useAppSelector } from '@/redux/hook'
 import { Rating } from '@mui/material'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
-const ProductPAge = ({ params }: { params: { query: string } }) => {
-  const query = params.query
+const ProductPAge = () => {
+  const query = useSearchParams().get("keyword") || ""
   const { products, loading, error } = useAppSelector((state) => state.products)
   const dispatch = useAppDispatch()
   const router = useRouter()
