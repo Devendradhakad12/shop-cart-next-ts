@@ -62,7 +62,7 @@ const Profile = ({ token }: { token: string }) => {
       })
       setUserId("")
     }
-  }, [])
+  }, [token,userid])
  
  
 

@@ -32,7 +32,7 @@ const UsersList = () => {
         getusers()
     }, [])
 
-    console.log(users)
+    //console.log(users)
 
     return (
         <TableContainer component={Paper} className="table">

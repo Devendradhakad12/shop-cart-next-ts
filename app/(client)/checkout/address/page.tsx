@@ -52,7 +52,7 @@ const CheckOutAddressPage = () => {
         }
         getUserInfo()
 
-    }, [])
+    }, [dispatch])
 
 
 

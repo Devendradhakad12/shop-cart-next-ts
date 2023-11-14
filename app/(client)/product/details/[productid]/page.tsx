@@ -16,10 +16,11 @@ import axios from 'axios'
 import { ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import ReactImageMagnify from 'react-image-magnify'
 import ReviewCard from './_components/review-card'
+import Image from 'next/image'
 
 interface ProductTypes {
     product: {
@@ -46,7 +47,7 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
     const [product, setproduct] = useState<ProductTypes['product']>([])
 
 
-    const getProduct = async () => {
+    const getProduct = useCallback(async () => {
         try {
             setLoading(true)
             const res = await axios.get(`/api/product/${productid}`)
@@ -57,11 +58,11 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
         } finally {
             setLoading(false)
         }
-    }
+    },[productid])
     useEffect(() => {
         getProduct()
-
-    }, [productid])
+ 
+    }, [productid,getProduct])
 
     const addToCart = (id: string) => {
         dispatch(addItemsToCart(id, itemCount))
@@ -159,7 +160,7 @@ const ProductDetailsPage = ({ params }: { params: { productid: string } }) => {
                                     <div className='flex mt-3'>
                                         {
                                             product[0].images.map((image, index) => (
-                                                <img className='w-[120px] h-[90px] object-cover mx-1 cursor-pointer' src={image.url} alt="" key={index} onClick={() => setImageUrl(image.url)} />
+                                                <Image height={90} width={120} className='w-[120px] h-[90px] object-cover mx-1 cursor-pointer' src={image.url} alt="" key={index} onClick={() => setImageUrl(image.url)} />
                                             ))
                                         }
                                     </div>

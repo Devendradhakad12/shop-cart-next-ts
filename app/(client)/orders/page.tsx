@@ -3,8 +3,8 @@
 import Loader from '@/components/loader'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import DeskTopCart from './_components/desktop-order'
-import MobileCart from './_components/mobile-order'
+import DeskTopOrders from './_components/desktop-order'
+import MobileOrders from './_components/mobile-order'
 
 const CartPage = () => {
 
@@ -32,8 +32,8 @@ const CartPage = () => {
       <h2 className='text-center text-4xl mt-14 text-orange-500 italic font-bold'>Orders</h2>
       {
         loading ? <Loader /> : <>
-          <DeskTopCart orders={orders} />
-          <MobileCart orders={orders} />
+          <DeskTopOrders orders={orders} />
+          <MobileOrders orders={orders} />
         </>
       }
     </>

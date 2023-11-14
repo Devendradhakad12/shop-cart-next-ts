@@ -5,6 +5,7 @@ import { addItemsToCart, removeItemsToCart } from '@/redux/actions/cart-action'
 import { getProduct } from '@/redux/actions/product-action'
 import { useAppDispatch } from '@/redux/hook'
 import { Delete } from 'lucide-react'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
@@ -56,7 +57,7 @@ const DeskTopCart = ({ products, total, totalItem, subtotal }: { products: any, 
                         {
                             products.length && products.map((obj: any) => (
                                 <tr key={obj.product._id} className='border-b border-slate-100'>
-                                    <td className='text-center'><p className='py-4 flex ml-10 text-orange-500 opacity-100'> <img src={obj.product.images[0].url} className='w-[30px] h-[30px] mr-3' alt="" /> {obj.product.name}</p></td>
+                                    <td className='text-center'><p className='py-4 flex ml-10 text-orange-500 opacity-100'> <Image height={30} width={30} src={obj.product.images[0].url} className='w-[30px] h-[30px] mr-3' alt="" /> {obj.product.name}</p></td>
                                     <td className='text-center'>₹{obj.product.price}</td>
                                     <td className='text-center'>
                                         <div className='flex'>

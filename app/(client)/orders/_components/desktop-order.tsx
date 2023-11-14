@@ -1,8 +1,9 @@
 import { Details } from '@mui/icons-material'
+import Image from 'next/image'
 import Link from 'next/link'
  
 
-const DeskTopCart = ({  orders }: {  orders: {}[]}) => {
+const DeskTopOrders = ({  orders }: {  orders: {}[]}) => {
 
 
    
@@ -23,7 +24,7 @@ const DeskTopCart = ({  orders }: {  orders: {}[]}) => {
                         {
                             orders.length && orders.map((order: any) => (
                                 <tr key={order._id} className='border-b border-slate-100'>
-                                    <td className='text-center'><p className='py-4 flex ml-10 text-orange-500 opacity-100'> <img src={order.products[0].product.images[0].url} className='w-[30px] h-[30px] mr-3' alt="" /> {order.orderId}</p></td>
+                                    <td className='text-center'><p className='py-4 flex ml-10 text-orange-500 opacity-100'> <Image height={30} width={30} src={order.products[0].product.images[0].url} className='w-[30px] h-[30px] mr-3' alt="" /> {order.orderId}</p></td>
                                     <td className='text-center'>₹{order.totalPrice}</td>
                                     <td className='text-center'>
                                         <div className='text-center'>
@@ -45,4 +46,4 @@ const DeskTopCart = ({  orders }: {  orders: {}[]}) => {
     )
 }
 
-export default DeskTopCart
+export default DeskTopOrders
