@@ -1,6 +1,7 @@
 'use client'
 
 import axios from "axios"
+import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { FormEvent, useState } from "react"
 import toast from "react-hot-toast"
@@ -121,7 +122,7 @@ const AddNewProductPage = () => {
                 {
                     productImages?.length >= 0 && <div className="flex justify-center flex-wrap">
                         {productImages.map((image, index) => (
-                            <img className="w-[300px] h-[200px] px-4 py-2" src={URL.createObjectURL(image)} key={index} />
+                            <Image height={200} width={300} alt="new" className="w-[300px] h-[200px] px-4 py-2" src={URL.createObjectURL(image)} key={index} />
                         ))}
                     </div>
                 }
