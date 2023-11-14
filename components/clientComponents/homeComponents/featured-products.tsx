@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hook'
 import { Rating } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-
+ 
 const FeaturedProducts = () => {
 
   const { products, loading, error } = useAppSelector((state) => state.products)
@@ -79,12 +79,6 @@ const FeaturedProducts = () => {
               <div>Product not Available</div>
             </>}</>
         }
-
-
-
-
-
-
       </div>
       <div className=' md:w-[70%] w-[90%] opacity-50 bg-slate-50 h-[0.4px] m-auto'>  </div>
     </div>

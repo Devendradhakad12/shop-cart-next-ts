@@ -1,12 +1,10 @@
 import axios from "axios";
 
-import toast from "react-hot-toast";
 import {
   errorRecived,
   productLoading,
   productRecived,
 } from "../slices/product-slice";
-import { AppDispatch } from "../store";
 
 interface getProductProps {
   keyword?:string;
