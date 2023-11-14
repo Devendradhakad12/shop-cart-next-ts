@@ -5,9 +5,10 @@ import { addItemsToCart } from '@/redux/actions/cart-action'
 import { getProduct } from '@/redux/actions/product-action'
 import { useAppDispatch, useAppSelector } from '@/redux/hook'
 import { Rating } from '@mui/material'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
- 
+
 const FeaturedProducts = () => {
 
   const { products, loading, error } = useAppSelector((state) => state.products)
@@ -15,7 +16,7 @@ const FeaturedProducts = () => {
   const router = useRouter()
 
   useEffect(() => {
-    dispatch(getProduct({})) 
+    dispatch(getProduct({}))
   }, [dispatch])
 
   // console.log(products)
@@ -28,8 +29,8 @@ const FeaturedProducts = () => {
   const addToCart = (id: string) => {
     dispatch(addItemsToCart(id, 1))
   }
-  const shopNowHandler = (id: string) => { 
-    router.push(`/checkout/address?productid=${id}`) 
+  const shopNowHandler = (id: string) => {
+    router.push(`/checkout/address?productid=${id}`)
   }
 
   return (
@@ -55,7 +56,7 @@ const FeaturedProducts = () => {
                   <div className='  md:w-fit w-[150px]' key={product._id}>
                     <button className='' onClick={() => onClick(product._id)}>
                       <div className='flex justify-center items-center '>
-                        <img className='md:w-[240px] w-[100px] md:h-[240px] h-[100px] rounded-sm object-contain' src={product.images[0].url} alt="" />
+                        <Image width={240} height={240} className='md:w-[240px] w-[100px] md:h-[240px] h-[100px] rounded-sm object-contain' src={product.images[0].url} alt="" />
 
                       </div>
                       <div>

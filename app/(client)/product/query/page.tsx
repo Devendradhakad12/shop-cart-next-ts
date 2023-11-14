@@ -6,6 +6,7 @@ import { addItemsToCart } from '@/redux/actions/cart-action'
 import { getProduct } from '@/redux/actions/product-action'
 import { useAppDispatch, useAppSelector } from '@/redux/hook'
 import { Rating } from '@mui/material'
+import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
@@ -74,7 +75,7 @@ const ProductPAge = () => {
                     <div className='md:w-fit w-[150px]' key={product._id}>
                       <button onClick={() => onClick(product._id)}>
                         <div className='flex justify-center items-center '>
-                          <img className='md:w-[240px] w-[100px] md:h-[240px] h-[100px] rounded-sm object-contain' src={product.images[0].url} alt="" />
+                          <Image height={100} width={240} className='md:w-[240px] w-[100px] md:h-[240px] h-[100px] rounded-sm object-contain' src={product.images[0].url} alt="" />
 
                         </div>
                         <div>
