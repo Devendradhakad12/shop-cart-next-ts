@@ -43,7 +43,7 @@ const MobileCart = ({ products, total,totalItem, subtotal }: { products: any,tot
 
             {
                 products.length && products.map((obj: any) => (
-                    <div className=' w-[400px] h-full rounded-md border-opacity-25 border-[0.1px] border-slate-50'>
+                    <div key={obj.product._id} className=' w-[400px] h-full rounded-md border-opacity-25 border-[0.1px] border-slate-50'>
                         <div className=' border-b flex justify-center py-4 px-4 text-lg items-center '><img src={obj.product.images[0].url} className='w-[100px] object-contain h-[100px] mr-3' alt="" /> <button onClick={() => RemoveHandler(obj.product._id)} className=' float-right'><Delete /></button> </div>
                         <div className=' border-b flex justify-between py-4 px-4 text-lg '><span>Product:</span><span className='text-orange-500'> {obj.product.name}</span></div>
                         <div className=' border-b flex justify-between py-4 px-4 text-lg '><span>Price:</span><span>₹{obj.product.price}</span></div>
