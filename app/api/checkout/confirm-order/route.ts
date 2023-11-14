@@ -9,12 +9,10 @@ import { Order } from "@/models/order.model";
 import { redirect } from "next/navigation";
 //import shortid from "shortid"
 
-export const instance = new Razorpay({
-  key_id: process.env.RAZORPAY_API_KEY!,
-  key_secret: process.env.PAZORPAY_API_SECRET!,
-});
+
 
 export async function POST(req: Request) {
+ 
   try {
     await connectToDB();
     const token = await tokenValue();
