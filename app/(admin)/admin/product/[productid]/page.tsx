@@ -2,6 +2,7 @@
 
 import Loader from "@/components/loader"
 import axios from "axios"
+import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { FormEvent, useEffect, useState } from "react"
 import toast from "react-hot-toast"
@@ -157,7 +158,7 @@ const ProductEditPage = ({ params }: { params: { productid: string } }) => {
                         {
                             oldImages?.length >= 0 && <div className="flex justify-center flex-wrap">
                                 {oldImages.map((image, index) => (
-                                    <img className="w-[300px] h-[200px] px-4 py-2" src={image.url} key={index} />
+                                    <Image height={200} width={300} alt="product" className="w-[300px] h-[200px] px-4 py-2" src={image.url} key={index} />
                                 ))}
                             </div>
                         }
