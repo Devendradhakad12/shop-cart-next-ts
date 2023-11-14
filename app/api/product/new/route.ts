@@ -22,4 +22,4 @@ export async function POST(req:Request){
         console.log("PRODUCT CREATING ERROR",error)
         return new NextResponse("Server error",{status:500})
     }
-} 
+}  

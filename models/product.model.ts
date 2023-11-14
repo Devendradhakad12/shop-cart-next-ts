@@ -3,7 +3,7 @@ import mongoose, { models } from "mongoose";
  
  
 
-const productSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({ 
   name: {
     type: String,
     required: true,
@@ -62,6 +62,14 @@ const productSchema = new mongoose.Schema({
       },
     },
   ],
+  stock:{
+    type:Number,
+    default:1
+  },
+  sold:{
+    type:Number,
+    default:0,
+  }
 
 },{timestamps:true});
 

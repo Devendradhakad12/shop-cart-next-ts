@@ -29,7 +29,7 @@ interface ProductTypes {
   }[],
 }
 
-const List = () => {
+const ProductsList = () => {
   const column = [
     "Product Id",
     "Name",
@@ -112,7 +112,7 @@ await axios.delete(`/api/product/${productid}`)
               <TableCell className="tableCell">
                 <div className="cellWrapper flex justify-start items-center">
                   <img src={row.images[0].url} alt="" className="w-10 h-10" />
-
+ 
                 </div>
               </TableCell>
               <TableCell className="tableCell"><Link href={`/admin/product/${row._id}`}><Edit /></Link></TableCell>
@@ -134,4 +134,4 @@ await axios.delete(`/api/product/${productid}`)
   );
 };
 
-export default List;
+export default ProductsList;

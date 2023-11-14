@@ -1,6 +1,6 @@
 import Chart from "@/components/adminComponents/chart"
 import Featured from "@/components/adminComponents/featured"
-import List from "@/components/adminComponents/table"
+import List from "@/components/adminComponents/order-table"
 import Widget from "@/components/adminComponents/widget"
  
 
@@ -22,7 +22,7 @@ const DashboardPage = async () => {
       {  <Chart   title="Last 6 Months (Revenue)" aspect={2 / 1} />}
       </div>
       <div className="listContainer">
-        <div className="listTitle">Latest Transactions</div>
+        <div className="listTitle">Latest Orders</div>
        <List /> 
       </div>
     </div>

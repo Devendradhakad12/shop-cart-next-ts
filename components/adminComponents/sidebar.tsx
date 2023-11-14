@@ -54,12 +54,12 @@ const Sidebar = () => {
           Users
       </p>
     </Link>
-    <Link href={"/admin/reviews"}>
+{/*     <Link href={"/admin/reviews"}>
       <p>
           <RateReviewOutlined/>
           Reviews
       </p>
-    </Link>
+    </Link> */}
   </div>
   )
 }
