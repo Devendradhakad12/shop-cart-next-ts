@@ -9,7 +9,7 @@ const DashboardPage = async () => {
   return (
     <div className="home"> 
   
-    <div className="homeContainer">
+    <div className="homeContainer ">
   
       <div className="widgets">
         <Widget type="user" />

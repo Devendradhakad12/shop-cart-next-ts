@@ -2,35 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
- body{
+body {
   background: #000000;
   color: white;
   scroll-behavior: smooth;
- }
-
-.input{
-  @apply outline-none bg-transparent border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2 px-4 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-center ;
-}
-.inputSearch{
-  @apply outline-none  bg-slate-600 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full py-2 px-4 dark:bg-slate-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500  pr-14;
 }
 
-.df{
+.input {
+  @apply outline-none bg-transparent border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2 px-4 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-center;
+}
+
+.inputSearch {
+  @apply outline-none bg-slate-600 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full py-2 px-4 dark:bg-slate-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pr-14;
+}
+
+.df {
   @apply flex justify-start items-center
 }
- 
+
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: rgb(255, 255, 255);
-    transition: background-color 5000s ease-in-out 0s;
-    box-shadow: inset 0 0 20px 20px rgba(17, 24, 39, 0.818);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgb(255, 255, 255);
+  transition: background-color 5000s ease-in-out 0s;
+  box-shadow: inset 0 0 20px 20px rgba(17, 24, 39, 0.818);
 }
 
-.button{
+.button {
   @apply rounded-md font-semibold transition-all duration-500 hover:scale-110;
 }
 
@@ -39,33 +40,41 @@ input:-webkit-autofill:active {
 .mainDiv {
   @apply bg-slate-900 h-[100vh] text-white flex justify-center items-center flex-col;
 }
+
 .loginH1 {
   @apply font-semibold mb-5 text-[30px];
 }
+
 .loginDiv {
   @apply flex flex-col justify-center items-center bg-slate-700 p-5 rounded-lg border-t-4 border-sky-400 sm:w-[500px] w-[90%] shadow-md shadow-slate-200;
 }
+
 .loginForm {
   @apply flex flex-col gap-6 sm:w-[60%] w-[80%];
 }
+
 .formInput {
   @apply bg-transparent w-[100%] border-b-2 border-sky-400 rounded-sm outline-none text-center py-4 text-[18px];
 }
+
 .lsBtn {
   @apply mt-5 bg-sky-400 rounded-sm py-1 text-[25px] font-bold text-slate-700;
 }
+
 .loginP {
   @apply my-8;
 }
+
 .bg {
   @apply bg-sky-400;
 }
+
 .box {
   @apply bg-sky-400 h-[100px] w-[100px] rounded-md flex justify-center items-center flex-col;
 }
 
 .homeTaskCompletedBox {
-  @apply sm:w-[400px] w-[90%] h-[250px]  rounded-xl flex flex-col justify-center items-center;
+  @apply sm:w-[400px] w-[90%] h-[250px] rounded-xl flex flex-col justify-center items-center;
 }
 
 .progressBarOutside {
@@ -73,30 +82,32 @@ input:-webkit-autofill:active {
 }
 
 .progressBarInside {
-  @apply h-full flex justify-center items-center text-[18px] font-bold  text-center p-0.5 leading-none rounded-full;
+  @apply h-full flex justify-center items-center text-[18px] font-bold text-center p-0.5 leading-none rounded-full;
 }
+
 .homeTaskBox {
-  @apply sm:w-[400px] w-[90%] flex-wrap  h-full pb-[90px]  rounded-xl flex flex-col items-center pt-6;
+  @apply sm:w-[400px] w-[90%] flex-wrap h-full pb-[90px] rounded-xl flex flex-col items-center pt-6;
 }
 
 .btn {
   @apply bg-sky-800 px-5 py-3 rounded-lg text-[20px] font-semibold text-white transition-all duration-75 hover:scale-105 active:scale-95
 }
 
-.edbtn{
-  @apply  px-5 rounded-lg text-[20px] font-semibold transition-all duration-75 hover:scale-105 active:scale-95
+.edbtn {
+  @apply px-5 rounded-lg text-[20px] font-semibold transition-all duration-75 hover:scale-105 active:scale-95
 }
 
 .inputProfile {
-  @apply  w-[100%] border-b border-sky-100 rounded-sm outline-none text-center py-4 text-[18px];
+  @apply w-[100%] border-b border-sky-100 rounded-sm outline-none text-center py-4 text-[18px];
 }
+
 .inputAddress {
-  @apply  w-[45%] border-b border-sky-100 rounded-sm outline-none text-center py-4 text-[18px];
+  @apply w-[45%] border-b border-sky-100 rounded-sm outline-none text-center py-4 text-[18px];
 }
 
 
 /* Style for Sidebar */
-.dashboard{
+.dashboard {
   width: 100vw;
   max-width: 100%;
   display: grid;
@@ -104,40 +115,44 @@ input:-webkit-autofill:active {
   position: absolute;
 
 }
+
 .sidebar {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   padding: 3rem 0;
-  border-right: 1px solid ;
+  border-right: 1px solid;
   height: 92vh;
- 
- 
+
+
 }
 
-.sidebar > a:first-child {
+.sidebar>a:first-child {
   padding: 0;
 }
- 
 
-.sidebar > a > img:hover {
+
+.sidebar>a>img:hover {
   filter: drop-shadow(0 0 10px tomato);
 }
+
 .sidebar a {
   text-decoration: none;
   padding: 2rem 3rem;
   transition: all 0.5s;
- 
+
 }
+
 .sidebar a:hover {
-  @apply text-sky-400 ;
+  @apply text-sky-400;
   transform: scale(1.1);
 }
 
-.sidebar a > P {
+.sidebar a>P {
   display: flex;
   align-items: center;
 }
-.sidebar a > p > svg {
+
+.sidebar a>p>svg {
   margin-right: 0.5rem;
 }
 
@@ -149,7 +164,7 @@ input:-webkit-autofill:active {
 /*! admin home style   */
 .home {
   display: flex;
- 
+
   .homeContainer {
     flex: 6;
 
@@ -158,7 +173,7 @@ input:-webkit-autofill:active {
       display: flex;
       padding: 20px;
       gap: 20px;
-    } 
+    }
 
     .charts {
       padding: 5px 20px;
@@ -193,8 +208,8 @@ input:-webkit-autofill:active {
   height: 100px;
 
   .left,
-  .right { 
-    display: flex; 
+  .right {
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
 
@@ -224,6 +239,7 @@ input:-webkit-autofill:active {
       &.positive {
         color: green;
       }
+
       &.negative {
         color: red;
       }
@@ -257,7 +273,7 @@ input:-webkit-autofill:active {
     }
   }
 
-  .bottom { 
+  .bottom {
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -337,14 +353,14 @@ input:-webkit-autofill:active {
     stroke: rgb(228, 225, 225);
   }
 }
-  
+
 
 /* data table */
 .datatable {
   height: 600px;
   padding: 20px;
-  
-  .datatableTitle{
+
+  .datatableTitle {
     width: 100%;
     font-size: 24px;
     color: gray;
@@ -353,7 +369,7 @@ input:-webkit-autofill:active {
     align-items: center;
     justify-content: space-between;
 
-    .link{
+    .link {
       text-decoration: none;
       color: green;
       font-size: 16px;
@@ -386,10 +402,12 @@ input:-webkit-autofill:active {
       background-color: rgba(0, 128, 0, 0.05);
       color: green;
     }
+
     &.pending {
       background-color: rgba(255, 217, 0, 0.05);
       color: goldenrod;
     }
+
     &.passive {
       background-color: rgba(255, 0, 0, 0.05);
       color: crimson;
@@ -408,7 +426,7 @@ input:-webkit-autofill:active {
       border: 1px dotted rgba(0, 0, 139, 0.596);
       cursor: pointer;
     }
-    
+
     .deleteButton {
       padding: 2px 5px;
       border-radius: 5px;
@@ -421,52 +439,68 @@ input:-webkit-autofill:active {
 
 
 .newProductContainerImages {
- display: grid;
- grid-template-columns: 1fr 3fr;
- margin-top: 30px;
- width: 100vw;
- max-width: 100%;
- 
-}
-.newProductContainer{
-  @apply flex justify-evenly  items-center w-[100vh] h-full m-auto;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  margin-top: 30px;
+  width: 100vw;
+  max-width: 100%;
+
 }
 
-.selectButton{
-  @apply capitalize text-center w-full bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+.newProductContainer {
+  @apply flex justify-evenly items-center w-[100vh] h-full m-auto;
+}
+
+.selectButton {
+  @apply capitalize text-center w-full bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
 }
 
 
 
 // banner div 
 
-.bannerDiv::before{
-content: "";
-position: absolute;
-top: 0;
-left: 0;
-height: 100%;
-width: 100%;
-background: url(https://res.cloudinary.com/dvkfio4zq/image/upload/v1699342225/shopcart/rrj7b09r5ov5tvvcotwf.jpg)center center/cover;
- z-index: -1;
- object-fit: cover;
- background-repeat: no-repeat;
- opacity: 0.8;
- background-color: black;
- border-radius: 20px;
+.bannerDiv::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: url(https://res.cloudinary.com/dvkfio4zq/image/upload/v1699342225/shopcart/rrj7b09r5ov5tvvcotwf.jpg)center center/cover;
+  z-index: -1;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+  background-color: black;
+  border-radius: 20px;
 }
-.featureProduct::before{
-content: "";
-position: absolute;
-top: 0;
-left: 0;
-height: 100%;
-width: 100%;
-background: url(https://res.cloudinary.com/dvkfio4zq/image/upload/v1699343193/shopcart/ow40zsre6a9var3h8fkk.jpg)center center/cover;
- z-index: -1;
- object-fit: cover;
- background-repeat: no-repeat;
- opacity: 0.1;
- background-color: black;
- border-radius: 20px;
+
+.featureProduct::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: url(https://res.cloudinary.com/dvkfio4zq/image/upload/v1699343193/shopcart/ow40zsre6a9var3h8fkk.jpg)center center/cover;
+  z-index: -1;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+  background-color: black;
+  border-radius: 20px;
+}
+
+.pending {
+  color: red;
+}
+
+.shipped {
+  color: rgb(166, 166, 2);
+}
+.processing{
+  color: hotpink;
+}
+.delivered {
+  color: green;
 }
