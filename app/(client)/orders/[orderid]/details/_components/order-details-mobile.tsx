@@ -1,15 +1,50 @@
 'use client'
 
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import React from 'react'
+import Step from '@mui/material/Step';
+import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
+import StepLabel from '@mui/material/StepLabel';
+import Stepper from '@mui/material/Stepper';
+import { styled } from '@mui/material/styles';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
-const OrderDetiailsMobile = ({ products, total, totalItem, orderId }: { products: [], totalItem: number, total: number, orderId: string }) => {
+const OrderDetiailsMobile = ({ products, total, totalItem, orderId ,status}: {status:string, products: [], totalItem: number, total: number, orderId: string }) => {
     const router = useRouter()
 
     const onClick = (id: string) => {
         router.push(`/product/details/${id}`)
     }
+
+    //* steper
+    const steps = [
+        "pending", "processing", "shipped", "delivered"
+    ]
+
+    
+const QontoConnector = styled(StepConnector)(({ theme }) => ({
+    [`&.${stepConnectorClasses.alternativeLabel}`]: {
+      top: 10,
+      left: 'calc(-50% + 16px)',
+      right: 'calc(50% + 16px)',
+    },
+    [`&.${stepConnectorClasses.active}`]: {
+      [`& .${stepConnectorClasses.line}`]: {
+        borderColor: '#784af4',
+      },
+    },
+    [`&.${stepConnectorClasses.completed}`]: {
+      [`& .${stepConnectorClasses.line}`]: {
+        borderColor: '#784af4',
+      },
+    },
+    [`& .${stepConnectorClasses.line}`]: {
+      borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
+      borderTopWidth: 3,
+      borderRadius: 1,
+    },
+  }));
+
+
     return (
 
         <div className='flex justify-center items-center md:hidden flex-col gap-4 my-10'>
@@ -27,7 +62,7 @@ const OrderDetiailsMobile = ({ products, total, totalItem, orderId }: { products
                                 </div>
                             </span>
                         </div>
-                    </div> 
+                    </div>
                 ))
             }
 
@@ -44,10 +79,16 @@ const OrderDetiailsMobile = ({ products, total, totalItem, orderId }: { products
                             <h3>   <span className='text-xl mr-3 '> Total Amount :</span> <span className='text-2xl font-bold'> ₹{total} </span></h3>
                         </div>
                     </div>
-
-
-
                 </div>
+            </div>
+            <div className='mt-6 w-[90%]'>
+                <Stepper alternativeLabel activeStep={steps.indexOf(status) || 0}   connector={<QontoConnector />} >
+                    {steps.map((label) => (
+                        <Step key={label}>
+                            <StepLabel><span className='text-white'>{label}</span></StepLabel>
+                        </Step>
+                    ))}
+                </Stepper>
             </div>
 
 

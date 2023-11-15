@@ -8,7 +8,7 @@ import OrderDetailsDesktop from './_components/order-detials-desktop'
 
 const OrderDetailsPage = ({ params }: { params: { orderid: string } }) => {
     const orderid = params.orderid
-    const [order, setOrder] = useState<{ products: [], totalPrice: number, totalItem: number, orderId: string }[]>([])
+    const [order, setOrder] = useState<{status:string, products: [], totalPrice: number, totalItem: number, orderId: string }[]>([])
     const [loading, setLoading] = useState(false)
     useEffect(() => {
         const getOrder = async () => {
@@ -24,14 +24,14 @@ const OrderDetailsPage = ({ params }: { params: { orderid: string } }) => {
         }
         getOrder()
     }, [orderid])
-    //console.log(order)
+  //  console.log(order[0]?.status)
     return (
         <div>
             <h2 className='text-center text-4xl mt-14 text-orange-500 italic font-bold'>Order Details</h2>
             {
                 loading ? <Loader /> : <>
-                    <OrderDetiailsMobile orderId={order[0]?.orderId} products={order[0]?.products} total={order[0]?.totalPrice} totalItem={order[0]?.totalItem} />
-                    <OrderDetailsDesktop orderId={order[0]?.orderId} products={order[0]?.products} total={order[0]?.totalPrice} totalItem={order[0]?.totalItem} />
+                    <OrderDetiailsMobile status={order[0]?.status} orderId={order[0]?.orderId} products={order[0]?.products} total={order[0]?.totalPrice} totalItem={order[0]?.totalItem} />
+                    <OrderDetailsDesktop status={order[0]?.status} orderId={order[0]?.orderId} products={order[0]?.products} total={order[0]?.totalPrice} totalItem={order[0]?.totalItem} />
                 </>
             }
         </div>
