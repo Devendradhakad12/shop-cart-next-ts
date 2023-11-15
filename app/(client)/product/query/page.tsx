@@ -63,7 +63,7 @@ const ProductPAge = () => {
 
       {/* products container  */}
       <div className='flex min-w-full flex-col items-center'>
-        <h2 className=' text-2xl text-center capitalize mt-5 '>{query}</h2>
+        <h2 className=' text-2xl text-center capitalize mt-5 '>{query ? query : "Products"}</h2>
         <div className='flex justify-center items-center flex-wrap gap-10 pb-10 mt-10'>
           {/* product  */}
           {
@@ -72,7 +72,7 @@ const ProductPAge = () => {
                 {
                   products && products.map((product: any) => (
 
-                    <div className='md:w-fit w-[150px]' key={product._id}>
+                    <div className=' w-fit border border-slate-50 p-4 rounded-lg border-opacity-30 flex flex-col justify-center items-center' key={product._id}>
                       <button onClick={() => onClick(product._id)}>
                         <div className='flex justify-center items-center '>
                           <Image height={100} width={240} className='md:w-[240px] w-[100px] md:h-[240px] h-[100px] rounded-sm object-contain' src={product.images[0].url} alt="" />

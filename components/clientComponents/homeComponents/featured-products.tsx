@@ -53,13 +53,13 @@ const FeaturedProducts = () => {
               {
                 products && products.map((product: any) => (
 
-                  <div className='  md:w-fit w-[150px]' key={product._id}>
+                  <div className=' w-fit border border-slate-50 p-4 rounded-lg border-opacity-30 flex flex-col justify-center items-center' key={product._id}>
                     <button className='' onClick={() => onClick(product._id)}>
                       <div className='flex justify-center items-center '>
                         <Image width={240} height={240} className='md:w-[240px] w-[100px] md:h-[240px] h-[100px] rounded-sm object-contain' src={product.images[0].url} alt="" />
 
                       </div>
-                      <div>
+                      <div className=''>
                         <Rating name="half-rating" value={product.ratings} readOnly className='mt-3' size='small' />
                         <h2 className=' text-xl'>{product.name}</h2>
                         <p className=' font-bold'>₹ {product.price}</p>
@@ -67,7 +67,7 @@ const FeaturedProducts = () => {
                     </button>
                     <div className='mt-3 text-center justify-center items-center flex gap-2'>
 
-                      <button onClick={() => addToCart(product._id)} className='button bg-orange-600 md:text-sm text-xs text-black mr-2 px-3 py-1'>ADD TO CART</button>
+                      <button onClick={() => addToCart(product._id)} className='button bg-orange-600 md:text-sm text-xs text-black mr-2 px-3 py-1'>CART</button>
                       <button onClick={() => shopNowHandler(product._id)} className='bg-orange-600 button md:text-sm  text-xs font-bold text-black ml-2 px-3 py-1' >BUY</button>
                     </div>
                   </div>
