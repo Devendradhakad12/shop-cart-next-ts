@@ -491,9 +491,7 @@ input:-webkit-autofill:active {
   border-radius: 20px;
 }
 
-.pending {
-  color: red;
-}
+ 
 
 .shipped {
   color: rgb(166, 166, 2);
@@ -503,4 +501,7 @@ input:-webkit-autofill:active {
 }
 .delivered {
   color: green;
+}
+.canceled{
+  color: red;
 }
