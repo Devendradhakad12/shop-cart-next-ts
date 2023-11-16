@@ -6,7 +6,7 @@ import List from "@/components/adminComponents/order-table"
 import Widget from "@/components/adminComponents/widget"
  
 
-const DashboardPage = async () => {
+const DashboardPage =  () => {
    
   return (
     <div className="home"> 
