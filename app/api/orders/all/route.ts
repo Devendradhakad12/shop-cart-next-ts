@@ -13,6 +13,6 @@ export async function GET(){
         return NextResponse.json(orders,{status:200})
     } catch (error) {
         console.log("GET_ORDERS_ERROR",error)
-        return new NextResponse("Server error")
+        return new NextResponse("Server error",{status:500})
     }
 }

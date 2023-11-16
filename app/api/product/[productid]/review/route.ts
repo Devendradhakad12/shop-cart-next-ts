@@ -44,6 +44,6 @@ export async function PUT(
         return NextResponse.json("Review Created", { status: 200 });
     } catch (error) {
       console.log("REVIEW_ERROR", error);
-      return new NextResponse("Server error" ); 
+      return new NextResponse("Server error",{status:500} ); 
     }
 }
