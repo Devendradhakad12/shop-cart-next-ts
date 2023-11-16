@@ -14,8 +14,8 @@ import Script from 'next/script'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'ShopCart',
-  description: 'ShopCart | Shopping to ShopCart',
+  title: 'ShopCart - Ecommerce',
+  description: 'ShopCart - Shopping to ShopCart',
 }
 
 export default async function RootLayout({
