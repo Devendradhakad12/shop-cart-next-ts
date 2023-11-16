@@ -5,15 +5,15 @@ import { redirect } from 'next/navigation'
 import React from 'react'
 
 
-const LayoutRoute = async ({
+const LayoutRoute =  ({
   children,
 }: {
   children: React.ReactNode
 }) => {
-  const userRole = await getUserDataFromToken() as DataStoredInToken
+  //const userRole = await getUserDataFromToken() as DataStoredInToken
 
 
-  if (userRole?.role !== "admin") return redirect("/")
+  //if (userRole?.role !== "admin") return redirect("/")
   return (
 
     <div className='dashboard'>
