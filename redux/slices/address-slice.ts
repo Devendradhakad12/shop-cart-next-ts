@@ -1,7 +1,7 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
-  address: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem("address")! || "{}") : {} //JSON.parse(localStorage.getItem("address")!)! || {}
+  address:  JSON.parse(localStorage.getItem("address")!)! || {} //typeof window !== 'undefined' ? JSON.parse(localStorage.getItem("address")! || "{}") : {}
 };
 const useraddressSlice = createSlice({
   name: "address",
