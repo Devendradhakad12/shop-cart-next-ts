@@ -13,7 +13,7 @@ const DashboardPage =  () => {
         <Widget type="user" />
         <Widget type="order" />
         <Widget type="earning" />
-        <Widget type="balance" /> 
+        <Widget type="balance" />  
       </div>
       <div className="charts">
        <Featured />

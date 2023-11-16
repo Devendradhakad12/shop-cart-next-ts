@@ -14,6 +14,8 @@ import Image from "next/image";
 import { Edit } from "lucide-react";
 import { Done } from "@mui/icons-material";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { setTotalAmount } from "@/redux/slices/dashboard-slice";
 
 const OrdersList = () => {
   const [orders, setOrders] = useState<{ status: string, totalPrice: number, createdAt: string, shippingAddress: { name: string }, orderId: string, _id: string, products: { _id: string, product: { name: string, images: { url: string }[] } }[] }[]>([])
@@ -22,12 +24,17 @@ const OrdersList = () => {
   const [orderStatus, setOrderStatus] = useState("")
   const [orderId, setOrderid] = useState("")
   const [updateing, setUpdating] = useState(false)
-
+   const dispatch = useDispatch()
+   
   const getOrders = useCallback(async () => {
     try {
       setLoading(true)
       const res = await axios.get("/api/orders/all")
       setOrders(res.data)
+     // console.log(res.data)
+      const totalAmount = res.data.reduce((acc:number,order:any)=>acc + order.totalPrice,0)
+     // console.log(totalAmount)
+     dispatch(setTotalAmount(totalAmount))
 
     } catch (error) {
       console.log(error)
