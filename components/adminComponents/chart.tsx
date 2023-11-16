@@ -1,15 +1,13 @@
 'use client'
 
 import {
-  AreaChart,
   Area,
-  XAxis,
-  CartesianGrid,
-  Tooltip,
+  AreaChart,
   ResponsiveContainer,
-  YAxis,
- 
-} from "recharts"; 
+  Tooltip,
+  XAxis,
+  YAxis
+} from "recharts";
 
 const data = [
   { name: "January", Total: 1200 },

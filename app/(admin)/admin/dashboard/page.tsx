@@ -1,3 +1,5 @@
+'use client'
+
 import Chart from "@/components/adminComponents/chart"
 import Featured from "@/components/adminComponents/featured"
 import List from "@/components/adminComponents/order-table"
@@ -27,7 +29,7 @@ const DashboardPage = async () => {
       </div>
     </div>
   </div>
-  )
+  ) 
 }
 
 export default DashboardPage
