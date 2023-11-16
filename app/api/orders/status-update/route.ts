@@ -9,7 +9,7 @@ export async function PUT(req:Request){
         const {id,status} = await req.json()
         const token = await tokenValue()
         const user =  await getUserDataFromToken() as DataStoredInToken
-        if(!token || !user || user.role!=="admin") new NextResponse("Unauthorized", { status: 500 });
+        if(!token || !user || user.role!=="admin") new NextResponse("Unauthorized", { status: 400 });
         const order:any = await Order.findOne({paymentStatus:"paid",_id:id}).select("-payment");
          order.status = status || order.status
         await order.save()

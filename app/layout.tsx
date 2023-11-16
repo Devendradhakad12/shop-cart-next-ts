@@ -25,21 +25,21 @@ export default async function RootLayout({
 }) {
   const token = tokenValue()
   const user = await getUserDataFromToken() as DataStoredInToken
- 
+
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Toaster />
         <Providers>
-          <Toaster />
           <Navbar />
           <main className='pt-14'>
             {children}
           </main>
-          <Dropdown token={token} user={user}/>
-     
+          <Dropdown token={token} user={user} />
         </Providers>
+
       </body>
-      <Script src="https://checkout.razorpay.com/v1/checkout.js"/>
+      <Script src="https://checkout.razorpay.com/v1/checkout.js" />
     </html>
   )
-}
+} 

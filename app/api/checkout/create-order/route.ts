@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     await connectToDB();
     const token = await tokenValue();
     const user = (await getUserDataFromToken()) as DataStoredInToken;
-    if (!token || !user) new NextResponse("Unauthorized", { status: 500 });
+    if (!token || !user) new NextResponse("Unauthorized", { status: 400 });
 
     const { products, amount, shippingAddress, totalItem } = await req.json();
 
@@ -39,6 +39,6 @@ export async function POST(req: Request) {
     return NextResponse.json(order, { status: 200 });
   } catch (error) {
     console.log("CREATE_ORDER_ERROR", error);
-    return new NextResponse("Server error", { status: 500 });
+    return new NextResponse("Server error");
   }
 }

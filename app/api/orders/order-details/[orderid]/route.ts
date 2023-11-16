@@ -11,7 +11,7 @@ export async function GET(
   try {
     const token = await tokenValue();
     const user = (await getUserDataFromToken()) as DataStoredInToken;
-    if (!token || !user) new NextResponse("Unauthorized", { status: 500 });
+    if (!token || !user) new NextResponse("Unauthorized", { status: 400 });
     const order = await Order.find({
       user: user.id,
       paymentStatus: "paid",

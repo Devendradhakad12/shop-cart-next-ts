@@ -2,7 +2,7 @@ import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   cart: {
-    cartItems:JSON.parse(localStorage.getItem("cartItems")!)!  || [],
+    cartItems:typeof window !== 'undefined' ? JSON.parse(localStorage.getItem("cartItems")! || "[]")! : [] // JSON.parse(localStorage.getItem("cartItems")!)!  || [],
    
   },
 
@@ -26,7 +26,7 @@ const addToCartSlice = createSlice({
         const removeItem = current(state).cart.cartItems.filter((i:any)=>i.product._id !== item.id)
         state.cart.cartItems = removeItem
     },
-  
+   
 
   },
 }); 

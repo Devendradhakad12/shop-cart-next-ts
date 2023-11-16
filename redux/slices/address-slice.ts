@@ -1,7 +1,7 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
-  address: JSON.parse(localStorage.getItem("address")!)! || {},
+  address: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem("address")! || "{}") : {} //JSON.parse(localStorage.getItem("address")!)! || {}
 };
 const useraddressSlice = createSlice({
   name: "address",
@@ -16,3 +16,4 @@ const useraddressSlice = createSlice({
 export const { setUseraddress } = useraddressSlice.actions;
 
 export default useraddressSlice.reducer;
+ 

@@ -12,10 +12,10 @@ export async function PUT(
     try {
         const token = await tokenValue()
         const user =  await getUserDataFromToken() as DataStoredInToken
-        if(!token || !user ) new NextResponse("Unauthorized", { status: 500 });
+        if(!token || !user ) new NextResponse("Unauthorized", { status: 400 });
         const { rating, comment,productId} = await req.json()
         const product =   await Product.findById({_id:productId})
-        if(!product) new NextResponse("Product not found", { status: 500 });
+        if(!product) new NextResponse("Product not found", { status: 400 });
         const review = {
           user:  user.id ,
           name: user.name, 
@@ -44,6 +44,6 @@ export async function PUT(
         return NextResponse.json("Review Created", { status: 200 });
     } catch (error) {
       console.log("REVIEW_ERROR", error);
-      return new NextResponse("Server error", { status: 500 }); 
+      return new NextResponse("Server error" ); 
     }
 }

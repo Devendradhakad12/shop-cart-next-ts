@@ -14,13 +14,13 @@ export async function GET(
     const token = await tokenValue();
     const user = (await getUserDataFromToken()) as DataStoredInToken;
     if (!token || !user || user.role !== "admin")
-      new NextResponse("Unauthorized", { status: 500 });
+      new NextResponse("Unauthorized", { status: 400 });
     const productId = params.productid;
     const product = await Product.findById({ _id: productId });
     return NextResponse.json(product, { status: 200 });
   } catch (error) {
     console.log("PRODUCT_DELETE_ERROR", error);
-    return new NextResponse("Server error", { status: 500 });
+    return new NextResponse("Server error", { status: 400 });
   }
 }
 
@@ -33,7 +33,7 @@ export async function PATCH(
     const token = await tokenValue();
     const user = (await getUserDataFromToken()) as DataStoredInToken;
     if (!token || !user || user.role !== "admin")
-      new NextResponse("Unauthorized", { status: 500 });
+      new NextResponse("Unauthorized", { status: 400 });
     const {
       productName,
       productDesc,
@@ -66,7 +66,7 @@ export async function DELETE(
     const token = await tokenValue();
     const user = (await getUserDataFromToken()) as DataStoredInToken;
     if (!token || !user || user.role !== "admin")
-      new NextResponse("Unauthorized", { status: 500 });
+      new NextResponse("Unauthorized", { status: 400 });
     const productId = params.productid;
     const product = await Product.findById({ _id: productId });
     product.images.map(async (image: any) => {

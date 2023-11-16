@@ -10,7 +10,7 @@ const initialState = {
 };
 const userTokenSlice = createSlice({
   name: "cart",
-  initialState,
+  initialState, 
   reducers: {
     setUserToken(state, action) {
       (state.token = action.payload.token), (state.user = action.payload.user);

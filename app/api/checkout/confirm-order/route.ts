@@ -17,7 +17,7 @@ export async function POST(req: Request) {
     await connectToDB();
     const token = await tokenValue();
     const user = (await getUserDataFromToken()) as DataStoredInToken;
-    if (!token || !user) new NextResponse("Unauthorized", { status: 500 });
+    if (!token || !user) new NextResponse("Unauthorized", { status: 400 });
 
     const {
       razorpay_payment_id,

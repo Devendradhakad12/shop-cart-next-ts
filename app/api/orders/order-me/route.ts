@@ -8,7 +8,7 @@ export async function GET(){
     try {
         const token = await tokenValue()
         const user =  await getUserDataFromToken() as DataStoredInToken
-        if(!token || !user) new NextResponse("Unauthorized", { status: 500 });
+        if(!token || !user) new NextResponse("Unauthorized", { status: 400 });
         const orders = await Order.find({user:user.id,paymentStatus:"paid"}).select("-shippingAddress").select("-payment").populate('products.product');
         return NextResponse.json(orders,{status:200})
     } catch (error) {

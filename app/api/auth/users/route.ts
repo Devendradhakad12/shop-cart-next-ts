@@ -8,7 +8,7 @@ export async function GET(){
     try {
         const token = await tokenValue()
         const user =  await getUserDataFromToken() as DataStoredInToken
-        if(!token || !user || user.role!=="admin") new NextResponse("Unauthorized", { status: 500 });
+        if(!token || !user || user.role!=="admin") new NextResponse("Unauthorized", { status: 400 });
         const users = await User.find({}).select("-password").select("-role");
         return NextResponse.json(users,{status:200})
     } catch (error) {

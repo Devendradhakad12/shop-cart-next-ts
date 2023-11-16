@@ -15,7 +15,7 @@ export async function PUT(req: Request, {params}:{params:{userid:string}} ) {
     const cookieStore = cookies();
     const token = cookieStore.get("scat");
     if (!token)
-      return NextResponse.json({ error: "Unauthorized" }, { status: 500 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 400 });
 
     // verify token
     const user = jwt.verify(
@@ -23,7 +23,7 @@ export async function PUT(req: Request, {params}:{params:{userid:string}} ) {
       process.env.JWT_SECRETE!
     ) as DataStoredInToken;
     if (!user || user.id !== params.userid)
-      return NextResponse.json({ error: "Unauthorized" }, { status: 500 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 400 });
 
     //find user from database
     const userinfo = await User.findById({ _id: user?.id });
