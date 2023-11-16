@@ -6,21 +6,21 @@ import React from 'react'
 
 
 const LayoutRoute = async ({
-    children,
-  }: {
-    children: React.ReactNode
-  }) => {
-    const userRole = await getUserDataFromToken() as DataStoredInToken
-    
+  children,
+}: {
+  children: React.ReactNode
+}) => {
+  const userRole = await getUserDataFromToken() as DataStoredInToken
 
-    if(userRole?.role !== "admin") return redirect("/")
+
+  if (userRole?.role !== "admin") return redirect("/")
   return (
-    
-      <div className='dashboard'>
+
+    <div className='dashboard'>
       <Sidebar />
-        {children}
-      </div>
-    
+      {children}
+    </div>
+
   )
 }
 
