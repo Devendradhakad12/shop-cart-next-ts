@@ -17,7 +17,7 @@ const SearchBar = ({token,user}:{token:string | undefined,user:{}}) => {
 
     //* set userToken in redux store
     
-    useEffect(()=>{
+    useEffect(()=>{ 
      dispatch(setUserToken({token,user}))
     },[token])
 

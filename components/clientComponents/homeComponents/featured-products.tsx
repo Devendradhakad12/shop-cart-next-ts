@@ -21,7 +21,7 @@ const FeaturedProducts = () => {
 
   // console.log(products)
   // console.log(loading)
-
+ 
   const onClick = (id: string) => {
     router.push(`/product/details/${id}`)
   }
@@ -48,7 +48,7 @@ const FeaturedProducts = () => {
 
         {/* product  */}
         {
-          loading ? <Loader /> : <>{products[0].name !== "" ?
+          loading ? <Loader /> : <>{products[0]?.name !== "" ?
             <>
               {
                 products && products.map((product: any) => (

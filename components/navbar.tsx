@@ -24,7 +24,7 @@ const Navbar = async () => {
 
 
 
-                <SearchBar token={token} user={user} />
+                <SearchBar token={token} user={user} /> 
 
 
                 <div className='flex gap-10'>

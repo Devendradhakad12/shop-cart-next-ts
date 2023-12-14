@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     const comparePassword = await bcrypt.compare(password, user.password);
 
     if (!comparePassword)
-      return new NextResponse("wrong email or password", { status: 401 });
+      return new NextResponse("wrong email or password", { status: 400 });
 
 
       const tokenData:DataStoredInToken = { id: user._id,role:user.role,name:user.name,email:user.email }

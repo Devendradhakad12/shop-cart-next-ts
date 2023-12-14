@@ -89,7 +89,7 @@ const ProductPAge = () => {
                         <button onClick={() => addToCart(product._id)} className='button bg-orange-600 md:text-sm text-xs text-black mr-2 px-3 py-1'>CART</button>
                         <button onClick={() => shopNowHandler(product._id)} className='bg-orange-600 button md:text-sm  text-xs font-bold text-black ml-2 px-3 py-1' >BUY</button>
                       </div>
-                    </div>
+                    </div> 
 
                   ))
                 }

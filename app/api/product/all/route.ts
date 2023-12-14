@@ -22,7 +22,7 @@ export async function GET(req:Request) {
     const priceLte = url.searchParams.get("price[lte]")  || 10000000000
     const price = {gte:priceGte,lte:priceLte}
     const category = url.searchParams.get("category")
-    const query  = {keyword,page,price,category}
+    const query  = {keyword,page,price,category} 
 
     // search , filter and pagination product using apiFeature
     const resultPerPage = 10
